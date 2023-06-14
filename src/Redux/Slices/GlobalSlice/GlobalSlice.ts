@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface initialStateTypes {
+interface IInitialState {
   isSideBarOpen: boolean;
 }
 
-const initialState: initialStateTypes = { isSideBarOpen: false };
+const initialState: IInitialState = { isSideBarOpen: false };
 
 const GlobalSlice = createSlice({
   name: "global",
@@ -17,3 +17,5 @@ const GlobalSlice = createSlice({
 });
 
 export const { updateIsSideBarOpen } = GlobalSlice.actions;
+
+export const GlobalReducer = GlobalSlice.reducer;

@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import colors from "colors";
+import process from "node:process";
+
 import { App } from "./App.js";
 
 dotenv.config();
@@ -14,7 +16,9 @@ if (uriDB) {
     .then(() => {
       console.info(colors.cyan("[DATABASE] Connecting to database . . ."));
       App.listen(PORT, () => {
-        console.info(colors.green("[DATABASE] MongoDB connected successfully✅"));
+        console.info(
+          colors.green("[DATABASE] MongoDB connected successfully✅")
+        );
         console.info(colors.cyan(`[DATABASE] Server running on port ${PORT}`));
       });
     })
@@ -24,7 +28,9 @@ if (uriDB) {
     });
 } else {
   console.warn(
-    colors.yellow("[DATABASE] MongoDB URI is not defined in the environment variables.")
+    colors.yellow(
+      "[DATABASE] MongoDB URI is not defined in the environment variables."
+    )
   );
 }
 
