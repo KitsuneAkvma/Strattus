@@ -4,16 +4,17 @@ import { PersistGate } from "redux-persist/integration/react";
 import Store, { persistor } from "./Redux/store.ts";
 
 import App from "./App.tsx";
-import "./index.css";
-import CircuralProgress from "@mui/material/CircularProgress";
+
+import { TimeThemeProvider } from "./utility/Themes/TimeThemeProvider.tsx";
+import { GlobalStyles } from "./utility/Themes/Global";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={Store}>
-    <PersistGate
-      loading={<CircuralProgress aria-busy={true} />}
-      persistor={persistor}
-    >
-      <App />
+    <PersistGate persistor={persistor}>
+      <TimeThemeProvider>
+        <GlobalStyles />
+        <App />
+      </TimeThemeProvider>
     </PersistGate>
   </Provider>
 );
