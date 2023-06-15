@@ -1,32 +1,20 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { updateGeoLocation } from "./operations";
-import { TRootState } from "../../store";
-import { IGeoLocationData } from "../../../utility/hooks/useGetGeoLocation";
-interface ILoginForm {
-  email: string;
-  password: string;
-}
-interface IRegisterForm {
-  username: string;
-  email: string;
-  password: string;
-  confPassword: string;
-}
-interface IUser {
-  username: string;
-  email: string;
-  locations: [];
-  isVerified: boolean;
-}
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { updateGeoLocation } from './operations'
+import { TRootState } from '../../store'
+
+import { IGeoLocationData, ILoginForm, IRegisterForm, ISessionSettings, IUser } from './types'
+
 interface IInitialState {
-  isLoading: boolean;
-  error: Error | undefined;
-  loginForm: ILoginForm | undefined;
-  registerForm: IRegisterForm | undefined;
-  user: IUser | undefined;
-  isAuth: boolean;
-  token: string;
-  geoLocation: IGeoLocationData | undefined;
+  isLoading: boolean
+  error: Error | undefined
+  loginForm: ILoginForm | undefined
+  registerForm: IRegisterForm | undefined
+  user: IUser | undefined
+  isAuth: boolean
+  token: string
+  geoLocation: IGeoLocationData | undefined
+  sessionSettings: ISessionSettings
+  savedLocations: Array<string>
 }
 
 const initialState: IInitialState = {
@@ -36,38 +24,54 @@ const initialState: IInitialState = {
   registerForm: undefined,
   user: undefined,
   isAuth: false,
-  token: "",
+  token: '',
   geoLocation: undefined,
-};
+  sessionSettings: { tempUnit: 'C', theme: 'default' },
+  savedLocations: [],
+}
 const handlePending = (state: TRootState) => {
-  state.isLoading = true;
-};
+  state.isLoading = true
+}
 const handleRejected = (state: TRootState, action: PayloadAction<never>) => {
-  state.isLoading = true;
-  state.error = action.payload;
-};
+  state.isLoading = true
+  state.error = action.payload
+}
 
 const SessionSlice = createSlice({
-  name: "session",
+  name: 'session',
   initialState,
   reducers: {
     updateLoginForm: (state, action) => {
-      state.loginForm = action.payload;
+      state.loginForm = action.payload
     },
     clearLoginForm: (state) => {
-      state.loginForm = initialState.loginForm;
+      state.loginForm = initialState.loginForm
     },
     updateRegisterForm: (state, action) => {
-      state.registerForm = action.payload;
+      state.registerForm = action.payload
     },
     clearRegisterForm: (state) => {
-      state.registerForm = initialState.registerForm;
+      state.registerForm = initialState.registerForm
     },
     updateIsAuth: (state, action) => {
-      state.isAuth = action.payload;
+      state.isAuth = action.payload
     },
     updateToken: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload
+    },
+    updateTempUnit: (state, action) => {
+      state.sessionSettings.tempUnit = action.payload
+    },
+    updateTheme: (state, action) => {
+      state.sessionSettings.theme = action.payload
+    },
+    addLocation: (state, action) => {
+      state.savedLocations = [...state.savedLocations, action.payload]
+    },
+    removeLocation: (state, action) => {
+      state.savedLocations = state.savedLocations.filter(
+        (item) => item != action.payload
+      )
     },
   },
   extraReducers: (builder: any) => {
@@ -77,11 +81,22 @@ const SessionSlice = createSlice({
       .addCase(
         updateGeoLocation.fulfilled,
         (state: IInitialState, action: PayloadAction<IGeoLocationData>) => {
-          state.isLoading = false;
-          state.geoLocation = action.payload;
+          state.isLoading = false
+          state.geoLocation = action.payload
         }
-      );
+      )
   },
-});
+})
 
-export const SessionReducer = SessionSlice.reducer;
+export const {
+  updateLoginForm,
+  clearLoginForm,
+  updateRegisterForm,
+  clearRegisterForm,
+  updateTempUnit,
+  updateTheme,
+  addLocation,
+  removeLocation,
+} = SessionSlice.actions
+
+export const SessionReducer = SessionSlice.reducer

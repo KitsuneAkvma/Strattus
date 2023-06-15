@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 interface IInitialState {
-  isSideBarOpen: boolean;
+  isSideBarOpen: boolean
 }
 
-const initialState: IInitialState = { isSideBarOpen: false };
+const initialState: IInitialState = { isSideBarOpen: false }
 
 const GlobalSlice = createSlice({
-  name: "global",
+  name: 'global',
   initialState,
   reducers: {
     updateIsSideBarOpen: (state, action) => {
-      state.isSideBarOpen = action.payload;
+      state.isSideBarOpen = action.payload
     },
   },
-});
+})
 
-export const { updateIsSideBarOpen } = GlobalSlice.actions;
+export const { updateIsSideBarOpen } = GlobalSlice.actions
 
-export const GlobalReducer = GlobalSlice.reducer;
+export const GlobalReducer = GlobalSlice.reducer

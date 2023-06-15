@@ -1,21 +1,17 @@
-import { PayloadAction, Slice, createSlice } from "@reduxjs/toolkit";
-import { TRootState } from "../../store";
-import { updateCurrentWeather } from "./operations";
+import { PayloadAction, Slice, createSlice } from '@reduxjs/toolkit'
+import { TRootState } from '../../store'
+import { updateCurrentWeather } from './operations'
 
-import {
-  IWeatherCurrent,
-  IWeatherData,
-  IWeatherLocation,
-} from "../../../utility/hooks/useGetWeather";
+import { IWeatherCurrent, IWeatherData, IWeatherLocation } from './types'
 
 interface IInitialState {
-  isLoading: boolean;
-  error: object | undefined;
-  currentLocation: IWeatherLocation | undefined;
-  currentWeather: IWeatherCurrent | undefined;
-  forecast: object | undefined;
-  airQuality: object | undefined;
-  alerts: object | undefined;
+  isLoading: boolean
+  error: object | undefined
+  currentLocation: IWeatherLocation | undefined
+  currentWeather: IWeatherCurrent | undefined
+  forecast: object | undefined
+  airQuality: object | undefined
+  alerts: object | undefined
 }
 
 const initialState: IInitialState = {
@@ -26,18 +22,18 @@ const initialState: IInitialState = {
   forecast: undefined,
   airQuality: undefined,
   alerts: undefined,
-};
+}
 
 const handlePending = (state: TRootState) => {
-  state.isLoading = true;
-};
+  state.isLoading = true
+}
 const handleRejected = (state: TRootState, action: PayloadAction<never>) => {
-  state.isLoading = true;
-  state.error = action.payload;
-};
+  state.isLoading = true
+  state.error = action.payload
+}
 
 const WeatherSlice: Slice = createSlice({
-  name: "weather",
+  name: 'weather',
   initialState,
   reducers: {},
   extraReducers: (builder: any) => {
@@ -47,12 +43,14 @@ const WeatherSlice: Slice = createSlice({
       .addCase(
         updateCurrentWeather.fulfilled,
         (state: IInitialState, action: PayloadAction<IWeatherData>) => {
-          state.isLoading = false;
-          state.currentWeather = action.payload.current;
-          state.currentLocation = action.payload.location;
+          state.isLoading = false
+          state.currentWeather = action.payload.current
+          state.currentLocation = action.payload.location
+          state.forecast = action.payload.forecast.forecastday
+          state.alerts = action.payload.alerts
         }
-      );
+      )
   },
-});
+})
 
-export const WeatherReducer = WeatherSlice.reducer;
+export const WeatherReducer = WeatherSlice.reducer

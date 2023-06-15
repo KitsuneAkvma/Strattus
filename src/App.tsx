@@ -2,14 +2,20 @@ import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { updateCurrentWeather } from './Redux/Slices/WeatherSlice/operations'
-import { selectSessionGeoLocation } from './Redux/selectors'
+import {
+  selectGlobalIsSideBarOpen,
+  selectSessionGeoLocation,
+} from './Redux/selectors'
 import { updateGeoLocation } from './Redux/Slices/SessionSlice/operations'
 import { LazyRouter } from './utility/lazyComponents'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Drawer } from '@mui/material'
+import { updateIsSideBarOpen } from './Redux/Slices/GlobalSlice/GlobalSlice'
 
 const App: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>()
+  const isDrawerOpen = useSelector(selectGlobalIsSideBarOpen)
+  console.log({ isDrawerOpen })
 
   const geoLocation = useSelector(selectSessionGeoLocation)
   const city = geoLocation?.city?.name || 'London'
@@ -29,8 +35,15 @@ const App: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city])
 
+  const handleDrawerClose = () => {
+    dispatch(updateIsSideBarOpen(false))
+  }
+
   return (
     <React.Suspense fallback={<CircularProgress />}>
+      <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
+        serwus
+      </Drawer>
       <LazyRouter />
     </React.Suspense>
   )
