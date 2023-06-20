@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const StyledDashboardHero = styled.section`
   width: 100vw;
   height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
+
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -16,6 +17,7 @@ export const StyledDashboardHero = styled.section`
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   .hero__current {
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +28,12 @@ export const StyledDashboardHero = styled.section`
       height: 6rem;
     }
   }
-  .hero__locations {
+  .hero__location {
+    padding: 1rem;
+  }
+  .hero__location__name {
+    display: flex;
+    gap: 0.3em;
   }
   .hero__button {
     position: absolute;
@@ -37,7 +44,6 @@ export const StyledDashboardHero = styled.section`
     height: 0.625rem;
 
     &__icon {
-   
       fill: white;
     }
   }

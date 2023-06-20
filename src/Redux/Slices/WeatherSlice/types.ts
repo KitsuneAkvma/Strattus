@@ -54,10 +54,10 @@ export interface IWeatherForecast {
   astro: IWeatherAstro
   hour: IWeatherHourlyForecast[]
 }
-interface IWeatherAlerts {
+export interface IWeatherAlerts {
   alert: Array<IWeatherAlert> // Replace 'any' with the actual type for alerts if available
 }
-interface IWeatherAlert {
+export interface IWeatherAlert {
   headline: string
   msgtype: string
   severity: string
@@ -72,7 +72,7 @@ interface IWeatherAlert {
   desc: string
   instruction: string
 }
-interface IWeatherDayForecast {
+export interface IWeatherDayForecast {
   maxtemp_c: number
   maxtemp_f: number
   mintemp_c: number
@@ -95,7 +95,7 @@ interface IWeatherDayForecast {
   uv: number
   air_quality: IWeatherAirQuality
 }
-interface IWeatherAstro {
+export interface IWeatherAstro {
   sunrise: string
   sunset: string
   moonrise: string
@@ -105,7 +105,7 @@ interface IWeatherAstro {
   is_moon_up: number
   is_sun_up: number
 }
-interface IWeatherHourlyForecast {
+export interface IWeatherHourlyForecast {
   time_epoch: number
   time: string
   temp_c: number
@@ -141,7 +141,7 @@ interface IWeatherHourlyForecast {
   uv: number
   air_quality: IWeatherAirQuality
 }
-interface IWeatherAirQuality {
+export interface IWeatherAirQuality {
   co: number
   no2: number
   o3: number

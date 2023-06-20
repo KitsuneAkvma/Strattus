@@ -19,6 +19,8 @@ import {
 import { StyledDashboardHero } from './DashboardHero.styled'
 import { useDispatch } from 'react-redux'
 import { updateIsSideBarOpen } from '../../../Redux/Slices/GlobalSlice/GlobalSlice'
+import { AlertsCard } from './AlertsCard/AlertsCard'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
 
 export const DashboardHero = () => {
   const dispatch = useDispatch()
@@ -67,7 +69,12 @@ export const DashboardHero = () => {
   return (
     <StyledDashboardHero>
       {' '}
-      <IconButton className="hero__button" aria-label="open menu" size="large" onClick={handleDrawerOpen}>
+      <IconButton
+        className="hero__button"
+        aria-label="open menu"
+        size="large"
+        onClick={handleDrawerOpen}
+      >
         <MenuIcon className="hero__button__icon" fontSize="inherit" />
       </IconButton>
       <div className="hero__current">
@@ -78,7 +85,7 @@ export const DashboardHero = () => {
           <Typography variant="h2" component="p" sx={{ fontWeight: 700 }}>
             {determineTempUnit('current')}
           </Typography>
-          <Typography variant="h5" component="p">
+          <Typography variant="h6" component="p">
             {currentWeather.condition.text}
           </Typography>
         </div>
@@ -88,14 +95,24 @@ export const DashboardHero = () => {
         />
       </div>
       <div className="hero__location">
-        <Typography variant="h6" component="p">
-          {city}
-        </Typography>{' '}
+        <span className="hero__location__name">
+          {' '}
+          <Typography
+            variant="h6"
+            component="p"
+            className="hero__location__name__text"
+          >
+            {city}
+          </Typography>
+          <LocationOnIcon className="hero__location__name__icon" />
+        </span>
+
         <Typography variant="body2" component="p">
           {determineTempUnit('min')}/{determineTempUnit('max')} Feels like{' '}
           {determineTempUnit('feelsLike')}
         </Typography>
       </div>
+      <AlertsCard />
     </StyledDashboardHero>
   )
 }

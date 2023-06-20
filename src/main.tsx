@@ -1,14 +1,17 @@
-import { Provider } from "react-redux";
-import ReactDOM from "react-dom/client";
-import { PersistGate } from "redux-persist/integration/react";
-import Store, { persistor } from "./Redux/store.ts";
+import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom/client'
+import { PersistGate } from 'redux-persist/integration/react'
+import Store, { persistor } from './Redux/store.ts'
 
-import App from "./App.tsx";
 
-import { TimeThemeProvider } from "./utility/Themes/TimeThemeProvider.tsx";
-import { GlobalStyles } from "./utility/Themes/Global";
+import App from './App.tsx'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+import { TimeThemeProvider } from './utility/Themes/TimeThemeProvider.tsx'
+import { GlobalStyles } from './utility/Themes/Global'
+
+
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={Store}>
     <PersistGate persistor={persistor}>
       <TimeThemeProvider>
@@ -17,4 +20,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </TimeThemeProvider>
     </PersistGate>
   </Provider>
-);
+)

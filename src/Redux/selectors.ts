@@ -20,7 +20,7 @@ const selectWeatherCurrentWeather = (state: TRootState) =>
   state.weather.currentWeather
 const selectWeatherForecast = (state: TRootState) => state.weather.forecast
 const selectWeatherAirQuality = (state: TRootState) => state.weather.airQuality
-const selectWeatherAlerts = (state: TRootState) => state.weather.alerts
+const selectWeatherAlerts = (state: TRootState) => state.weather.alerts.alert
 
 const selectGlobalIsSideBarOpen = (state: TRootState) =>
   state.global.isSideBarOpen

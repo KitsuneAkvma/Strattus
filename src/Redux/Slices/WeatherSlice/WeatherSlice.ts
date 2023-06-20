@@ -2,16 +2,23 @@ import { PayloadAction, Slice, createSlice } from '@reduxjs/toolkit'
 import { TRootState } from '../../store'
 import { updateCurrentWeather } from './operations'
 
-import { IWeatherCurrent, IWeatherData, IWeatherLocation } from './types'
+import {
+  IWeatherAirQuality,
+  IWeatherAlerts,
+  IWeatherCurrent,
+  IWeatherData,
+  IWeatherForecast,
+  IWeatherLocation,
+} from './types'
 
 interface IInitialState {
   isLoading: boolean
   error: object | undefined
   currentLocation: IWeatherLocation | undefined
   currentWeather: IWeatherCurrent | undefined
-  forecast: object | undefined
-  airQuality: object | undefined
-  alerts: object | undefined
+  forecast: IWeatherForecast[] | undefined
+  airQuality: IWeatherAirQuality | undefined
+  alerts: IWeatherAlerts | undefined
 }
 
 const initialState: IInitialState = {

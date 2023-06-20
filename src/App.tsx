@@ -11,11 +11,12 @@ import { LazyRouter } from './utility/lazyComponents'
 import { CircularProgress, Drawer } from '@mui/material'
 import { updateIsSideBarOpen } from './Redux/Slices/GlobalSlice/GlobalSlice'
 
+
 const App: React.FC = () => {
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>()
   const isDrawerOpen = useSelector(selectGlobalIsSideBarOpen)
-  console.log({ isDrawerOpen })
 
   const geoLocation = useSelector(selectSessionGeoLocation)
   const city = geoLocation?.city?.name || 'London'
