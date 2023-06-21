@@ -5,23 +5,29 @@ import { IWeatherAlert } from '../../../../Redux/Slices/WeatherSlice/types'
 import WarningIcon from '@mui/icons-material/Warning'
 import { Typography } from '@mui/material'
 
-type Talerts = IWeatherAlert[] | null
-
 export const AlertsCard = () => {
-  const alerts: Talerts = useSelector(selectWeatherAlerts)
-  console.log({ alerts })
+  const alerts: IWeatherAlert[] = useSelector(selectWeatherAlerts)
+
+  const areAlerts = () => {
+    if (alerts) {
+      const isArrayEmpty = alerts.length > 0
+      return isArrayEmpty
+    } else {
+      return false
+    }
+  }
 
   const shortenDescription = (desc: string) => {
     const descLength = desc.length
     const maxLength = 90
-    console.log({ descLength })
 
     const shortDesc =
       descLength <= maxLength ? desc : desc.slice(0, maxLength + 1) + ' ...'
 
     return shortDesc
   }
-  if (alerts)
+
+  if (areAlerts())
     return (
       <StyledAlertsCard aria-label="weather alerts card">
         <span className="alerts__title">

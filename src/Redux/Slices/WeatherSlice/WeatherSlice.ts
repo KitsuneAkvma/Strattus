@@ -43,7 +43,7 @@ const WeatherSlice: Slice = createSlice({
   name: 'weather',
   initialState,
   reducers: {},
-  extraReducers: (builder: any) => {
+  extraReducers: (builder: TRootState) => {
     builder
       .addCase(updateCurrentWeather.pending, handlePending)
       .addCase(updateCurrentWeather.rejected, handleRejected)

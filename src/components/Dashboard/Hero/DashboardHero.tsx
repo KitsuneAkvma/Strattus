@@ -1,26 +1,21 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import { IconButton, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
-import {
-  IGeoLocationData,
-  ISessionSettings,
-} from '../../../Redux/Slices/SessionSlice/types'
-import {
-  IWeatherCurrent,
-  IWeatherForecast,
-} from '../../../Redux/Slices/WeatherSlice/types'
+import { IGeoLocationData } from '../../../Redux/Slices/SessionSlice/types'
+import { IWeatherCurrent } from '../../../Redux/Slices/WeatherSlice/types'
 import {
   selectSessionGeoLocation,
-  selectSessionSettings,
   selectWeatherCurrentWeather,
-  selectWeatherForecast,
 } from '../../../Redux/selectors'
 
-import { StyledDashboardHero } from './DashboardHero.styled'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { useDispatch } from 'react-redux'
 import { updateIsSideBarOpen } from '../../../Redux/Slices/GlobalSlice/GlobalSlice'
+import { useTempUnits } from '../../../utility/hooks/useTempUnit'
+import { HourlyForecast } from '../HourlyForecast/HourlyForecast'
 import { AlertsCard } from './AlertsCard/AlertsCard'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
+import { StyledDashboardHero } from './DashboardHero.styled'
+import { DailyForecast } from '../DailyForecast/DailyForecast'
 
 export const DashboardHero = () => {
   const dispatch = useDispatch()
@@ -29,42 +24,7 @@ export const DashboardHero = () => {
   const currentWeather: IWeatherCurrent = useSelector(
     selectWeatherCurrentWeather
   )
-  const userSettings: ISessionSettings = useSelector(selectSessionSettings)
-  const forecast: Array<IWeatherForecast> = useSelector(selectWeatherForecast)
-  const determineTempUnit = (
-    type: 'current' | 'feelsLike' | 'min' | 'max' | 'avg'
-  ) => {
-    if (!forecast || !currentWeather) return '--'
-    switch (type) {
-      case 'current':
-        return userSettings.tempUnit === 'C'
-          ? `${currentWeather.temp_c}°C`
-          : `${currentWeather.temp_f}°F`
-        break
-      case 'feelsLike':
-        return userSettings.tempUnit === 'C'
-          ? `${currentWeather.feelslike_c}°`
-          : `${currentWeather.feelslike_f}°`
-        break
-      case 'min':
-        return userSettings.tempUnit === 'C'
-          ? `${forecast[0].day.mintemp_c}°`
-          : `${forecast[0].day.mintemp_f}°`
-        break
-      case 'max':
-        return userSettings.tempUnit === 'C'
-          ? `${forecast[0].day.maxtemp_c}°`
-          : `${forecast[0].day.maxtemp_f}°`
-        break
-      case 'avg':
-        return userSettings.tempUnit === 'C'
-          ? `${forecast[0].day.avgtemp_c}°`
-          : `${forecast[0].day.avgtemp_f}°`
 
-      default:
-        return '--'
-    }
-  }
   const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true))
   return (
     <StyledDashboardHero>
@@ -83,7 +43,7 @@ export const DashboardHero = () => {
           aria-label="Current conditions"
         >
           <Typography variant="h2" component="p" sx={{ fontWeight: 700 }}>
-            {determineTempUnit('current')}
+            {useTempUnits('current')}
           </Typography>
           <Typography variant="h6" component="p">
             {currentWeather.condition.text}
@@ -108,11 +68,11 @@ export const DashboardHero = () => {
         </span>
 
         <Typography variant="body2" component="p">
-          {determineTempUnit('min')}/{determineTempUnit('max')} Feels like{' '}
-          {determineTempUnit('feelsLike')}
+          {useTempUnits('min')}/{useTempUnits('max')} Feels like{' '}
+          {useTempUnits('feelsLike')}
         </Typography>
       </div>
-      <AlertsCard />
+      <AlertsCard /> <HourlyForecast /> <DailyForecast />
     </StyledDashboardHero>
   )
 }

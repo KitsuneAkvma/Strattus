@@ -1,4 +1,13 @@
-export const morning = {
+export interface Itheme {
+  name: string
+  colors: {
+    background: string
+    color: string
+    cardBackground: string
+  }
+}
+
+export const morning: Itheme = {
   name: 'morning',
   colors: {
     background:
@@ -7,7 +16,7 @@ export const morning = {
     cardBackground: '#4485D4',
   },
 }
-export const day = {
+export const day: Itheme = {
   name: 'day',
   colors: {
     background: 'linear-gradient(to bottom, #57c1eb 0%, #246fa8 100%);',
@@ -15,7 +24,7 @@ export const day = {
     cardBackground: 'rgba(68, 133, 212, 0.94);',
   },
 }
-export const dusk = {
+export const dusk: Itheme = {
   name: 'dusk',
   colors: {
     background: 'linear-gradient(to bottom, #82addb 0%,#ebb2b1 100%)',
@@ -23,7 +32,7 @@ export const dusk = {
     cardBackground: '#4485D4',
   },
 }
-export const night = {
+export const night: Itheme = {
   name: 'night',
   colors: {
     background: 'linear-gradient(to bottom, #020111 85%,#191621 100%)',
