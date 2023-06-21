@@ -10,6 +10,7 @@ import {
 } from '../../../Redux/selectors';
 import { StyledDailyForecast } from './DailyForecast.styled';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import { Typography } from '@mui/material';
 
 export const DailyForecast = () => {
   const forecast: IWeatherForecast[] = useSelector(selectWeatherForecast);
@@ -48,22 +49,43 @@ export const DailyForecast = () => {
             : `${today.mintemp_c}°`;
         return (
           <li className="daily__forecast__item" key={i}>
-            <p className="daily__forecast__item__day">{dayOfTheWeek}</p>
-            <p className="daily__forecast__item__rain">
+            <Typography
+              variant="subtitle2"
+              component="p"
+              className="daily__forecast__item__day"
+            >
+              {dayOfTheWeek}
+            </Typography>
+            <span className="daily__forecast__item__rain">
               <WaterDropIcon className="daily__forecast__item__rain__icon" />
-              <span className="daily__forecast__item__rain__chance">
+              <Typography
+                variant="body1"
+                className="daily__forecast__item__rain__chance"
+              >
                 {rainChance}%
-              </span>
-            </p>
+              </Typography>
+            </span>
             <img
               src={icon}
               alt="condition icon"
               className="daily__forecast__item__icon"
             />
-            <p className="daily__forecast__item__temp">
-              <span className="daily__forecast__item__max">{maxTemp}</span>
-              <span className="daily__forecast__item__min">{minTemp}</span>
-            </p>
+            <span className="daily__forecast__item__temp">
+              <Typography
+                variant="body1"
+                component="p"
+                className="daily__forecast__item__temp__max"
+              >
+                {maxTemp}
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                className="daily__forecast__item__temp__min"
+              >
+                {minTemp}
+              </Typography>
+            </span>
           </li>
         );
       })}

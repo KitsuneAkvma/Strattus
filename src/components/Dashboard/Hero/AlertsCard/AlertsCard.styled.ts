@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { cardHoverBrighten } from '../../../../utility/Themes/mixins.styled'
 
 export const StyledAlertsCard = styled.ul`
+  max-width: 50rem;
   padding: 0.7rem 1rem;
 
   background: ${({ theme }) => theme.colors.cardBackground};
@@ -20,4 +21,4 @@ export const StyledAlertsCard = styled.ul`
     font-weight: 700;
     text-transform: uppercase;
   }
-`
+`;
