@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledDashboardHero = styled.section`
   width: 100vw;
@@ -8,6 +8,7 @@ export const StyledDashboardHero = styled.section`
   display: flex;
   flex-direction: column;
   justify-items: center;
+  gap: 2rem;
 
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
@@ -47,4 +48,4 @@ export const StyledDashboardHero = styled.section`
       fill: white;
     }
   }
-`
+`;

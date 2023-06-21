@@ -6,7 +6,7 @@ const updateGeoLocation = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const location = await useGetGeoLocation();
-      console.info({ location });
+
       return location;
     } catch (err) {
       const message = String((err as Error).message);

@@ -1,31 +1,31 @@
-import MenuIcon from '@mui/icons-material/Menu'
-import { IconButton, Typography } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { IGeoLocationData } from '../../../Redux/Slices/SessionSlice/types'
-import { IWeatherCurrent } from '../../../Redux/Slices/WeatherSlice/types'
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { IGeoLocationData } from '../../../Redux/Slices/SessionSlice/types';
+import { IWeatherCurrent } from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectSessionGeoLocation,
   selectWeatherCurrentWeather,
-} from '../../../Redux/selectors'
+} from '../../../Redux/selectors';
 
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import { useDispatch } from 'react-redux'
-import { updateIsSideBarOpen } from '../../../Redux/Slices/GlobalSlice/GlobalSlice'
-import { useTempUnits } from '../../../utility/hooks/useTempUnit'
-import { HourlyForecast } from '../HourlyForecast/HourlyForecast'
-import { AlertsCard } from './AlertsCard/AlertsCard'
-import { StyledDashboardHero } from './DashboardHero.styled'
-import { DailyForecast } from '../DailyForecast/DailyForecast'
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useDispatch } from 'react-redux';
+import { updateIsSideBarOpen } from '../../../Redux/Slices/GlobalSlice/GlobalSlice';
+import { useTempUnits } from '../../../utility/hooks/useTempUnit';
+import { HourlyForecast } from '../HourlyForecast/HourlyForecast';
+import { AlertsCard } from './AlertsCard/AlertsCard';
+import { StyledDashboardHero } from './DashboardHero.styled';
+import { DailyForecast } from '../DailyForecast/DailyForecast';
 
 export const DashboardHero = () => {
-  const dispatch = useDispatch()
-  const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation)
-  const city = geoLocation?.city?.name || 'London'
+  const dispatch = useDispatch();
+  const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation);
+  const city = geoLocation?.city?.name || 'London';
   const currentWeather: IWeatherCurrent = useSelector(
     selectWeatherCurrentWeather
-  )
+  );
 
-  const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true))
+  const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true));
   return (
     <StyledDashboardHero>
       {' '}
@@ -74,5 +74,5 @@ export const DashboardHero = () => {
       </div>
       <AlertsCard /> <HourlyForecast /> <DailyForecast />
     </StyledDashboardHero>
-  )
-}
+  );
+};

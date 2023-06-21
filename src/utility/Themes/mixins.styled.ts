@@ -1,5 +1,4 @@
 export const cardHoverBrighten = `
-  overflow: hidden;
   &::after {
     position: absolute;
     top: 0;
@@ -21,4 +20,4 @@ export const cardHoverBrighten = `
   }
   &:hover {
     transform: scale(1.01);
-  }`
+  }`;
