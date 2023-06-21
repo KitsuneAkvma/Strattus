@@ -7,7 +7,7 @@
     "start": "vite --host",
     "dev": "cross-env vite",
     "server:dev": "cross-env NODE_ENV=development nodemon ./server/server.js",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
