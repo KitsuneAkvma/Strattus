@@ -7,7 +7,6 @@ import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import {
   IWeatherCurrent,
   IWeatherForecast,
-  IWeatherLocation,
 } from '../../../../Redux/Slices/WeatherSlice/types';
 import { useSelector } from 'react-redux';
 import {
@@ -16,6 +15,7 @@ import {
   selectWeatherForecast,
 } from '../../../../Redux/selectors';
 import { ISessionSettings } from '../../../../Redux/Slices/SessionSlice/types';
+import { useConverterTo24h } from '../../../../utility/hooks/useConverter';
 
 export const InfoTiles = () => {
   const currentWeather: IWeatherCurrent = useSelector(
@@ -31,20 +31,24 @@ export const InfoTiles = () => {
       : currentWeather.wind_mph;
   const speedUnit: string = userSettings.speedUnit;
 
-  const sunriseTime: string = forecast[0].astro.sunrise;
-  const sunsetTime: string = forecast[0].astro.sunset;
+  const sunriseTime12h: string = forecast[0].astro.sunrise;
+  const sunsetTime12h: string = forecast[0].astro.sunset;
+  const sunriseTime24h: [number, number] | undefined =
+    useConverterTo24h(sunriseTime12h);
+  const sunsetTime24h: [number, number] | undefined =
+    useConverterTo24h(sunsetTime12h);
 
   const declareUvIndex: (index: number) => string = index => {
     if (index <= 2) {
-      return 'low';
+      return 'Low';
     } else if (index > 2 && index <= 5) {
-      return 'moderate';
+      return 'Moderate';
     } else if (index > 5 && index <= 7) {
-      return 'high';
+      return 'High';
     } else if (index > 7 && index <= 10) {
-      return 'very high';
+      return 'Very high';
     } else {
-      return 'extreme';
+      return 'Extreme';
     }
   };
   const uvIndex: string = declareUvIndex(currentWeather.uv);
@@ -52,33 +56,75 @@ export const InfoTiles = () => {
     <StyledInfoTiles>
       <div className="infoTile">
         <WbSunnyIcon className="infoTile__icon infoTile__icon--uv" />
-        <Typography className="infoTile__header">UV index</Typography>
-        <Typography className="infoTile__value">{uvIndex}</Typography>
+        <Typography
+          className="infoTile__header"
+          variant="subtitle2"
+          component="h4"
+        >
+          UV index
+        </Typography>
+        <Typography className="infoTile__value" variant="caption" component="p">
+          {uvIndex}
+        </Typography>
       </div>
       <div className="infoTile">
         <WaterDropIcon className="infoTile__icon infoTile__icon--humidity" />
-        <Typography className="infoTile__header">Humidity</Typography>
-        <Typography className="infoTile__value">{humidity}%</Typography>
+        <Typography
+          className="infoTile__header"
+          variant="subtitle2"
+          component="h4"
+        >
+          Humidity
+        </Typography>
+        <Typography className="infoTile__value" variant="caption" component="p">
+          {humidity}%
+        </Typography>
       </div>
       <div className="infoTile">
         <AirIcon className="infoTile__icon infoTile__icon--wind" />
-        <Typography className="infoTile__header">Wind</Typography>
-        <Typography className="infoTile__value">
+        <Typography
+          className="infoTile__header"
+          variant="subtitle2"
+          component="h4"
+        >
+          Wind
+        </Typography>
+        <Typography className="infoTile__value" variant="caption" component="p">
           {windSpeed}
           <span className="infoTile__value--windSpeed"> {speedUnit}</span>
         </Typography>
       </div>
       <div className="infoTile infoTile--sunPos">
         <div className="infoTile__type infoTile__sunRise">
-          <Typography className="infoTile__type__header">Sunrise</Typography>
-          <Typography className="infoTile__type__value">
-            {sunriseTime}
+          <Typography
+            className="infoTile__type__header"
+            variant="subtitle2"
+            component="h4"
+          >
+            Sunrise
+          </Typography>
+          <Typography
+            className="infoTile__value"
+            variant="caption"
+            component="p"
+          >
+            {sunriseTime24h?.join(':')}
           </Typography>
         </div>{' '}
         <div className="infoTile__type infoTile__sunSet">
-          <Typography className="infoTile__type__header">Sunset</Typography>
-          <Typography className="infoTile__type__value">
-            {sunsetTime}
+          <Typography
+            className="infoTile__type__header"
+            variant="subtitle2"
+            component="h4"
+          >
+            Sunset
+          </Typography>
+          <Typography
+            className="infoTile__value"
+            variant="caption"
+            component="p"
+          >
+            {sunsetTime24h?.join(':')}
           </Typography>
         </div>{' '}
         <WbTwilightIcon className="infoTile__icon infoTile__icon--sunPos" />

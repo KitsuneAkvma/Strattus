@@ -14,11 +14,13 @@ export const StyledInfoTiles = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
 
     ${cardBackground}
 
     &__icon {
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 0.5rem;
       &--uv {
         fill: #ffedba;
       }
@@ -29,6 +31,9 @@ export const StyledInfoTiles = styled.section`
       &--humidity {
         fill: #a1b6ff;
       }
+    }
+    &__value {
+      filter: brightness(50%);
     }
   }
   .infoTile--sunPos {
@@ -47,5 +52,5 @@ export const StyledInfoTiles = styled.section`
     .infoTile__sunSet {
       grid-column: 3;
     }
-  } 
+  }
 `;
