@@ -1,20 +1,26 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { updateGeoLocation } from './operations'
-import { TRootState } from '../../store'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { updateGeoLocation } from './operations';
+import { TRootState } from '../../store';
 
-import { IGeoLocationData, ILoginForm, IRegisterForm, ISessionSettings, IUser } from './types'
+import {
+  IGeoLocationData,
+  ILoginForm,
+  IRegisterForm,
+  ISessionSettings,
+  IUser,
+} from './types';
 
 interface IInitialState {
-  isLoading: boolean
-  error: Error | undefined
-  loginForm: ILoginForm | undefined
-  registerForm: IRegisterForm | undefined
-  user: IUser | undefined
-  isAuth: boolean
-  token: string
-  geoLocation: IGeoLocationData | undefined
-  sessionSettings: ISessionSettings
-  savedLocations: Array<string>
+  isLoading: boolean;
+  error: Error | undefined;
+  loginForm: ILoginForm | undefined;
+  registerForm: IRegisterForm | undefined;
+  user: IUser | undefined;
+  isAuth: boolean;
+  token: string;
+  geoLocation: IGeoLocationData | undefined;
+  sessionSettings: ISessionSettings;
+  savedLocations: Array<string>;
 }
 
 const initialState: IInitialState = {
@@ -26,52 +32,52 @@ const initialState: IInitialState = {
   isAuth: false,
   token: '',
   geoLocation: undefined,
-  sessionSettings: { tempUnit: 'C', theme: 'default' },
+  sessionSettings: { tempUnit: 'C', speedUnit: 'km/h', theme: 'default' },
   savedLocations: [],
-}
+};
 const handlePending = (state: TRootState) => {
-  state.isLoading = true
-}
+  state.isLoading = true;
+};
 const handleRejected = (state: TRootState, action: PayloadAction<never>) => {
-  state.isLoading = true
-  state.error = action.payload
-}
+  state.isLoading = true;
+  state.error = action.payload;
+};
 
 const SessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
     updateLoginForm: (state, action) => {
-      state.loginForm = action.payload
+      state.loginForm = action.payload;
     },
-    clearLoginForm: (state) => {
-      state.loginForm = initialState.loginForm
+    clearLoginForm: state => {
+      state.loginForm = initialState.loginForm;
     },
     updateRegisterForm: (state, action) => {
-      state.registerForm = action.payload
+      state.registerForm = action.payload;
     },
-    clearRegisterForm: (state) => {
-      state.registerForm = initialState.registerForm
+    clearRegisterForm: state => {
+      state.registerForm = initialState.registerForm;
     },
     updateIsAuth: (state, action) => {
-      state.isAuth = action.payload
+      state.isAuth = action.payload;
     },
     updateToken: (state, action) => {
-      state.token = action.payload
+      state.token = action.payload;
     },
     updateTempUnit: (state, action) => {
-      state.sessionSettings.tempUnit = action.payload
+      state.sessionSettings.tempUnit = action.payload;
     },
     updateTheme: (state, action) => {
-      state.sessionSettings.theme = action.payload
+      state.sessionSettings.theme = action.payload;
     },
     addLocation: (state, action) => {
-      state.savedLocations = [...state.savedLocations, action.payload]
+      state.savedLocations = [...state.savedLocations, action.payload];
     },
     removeLocation: (state, action) => {
       state.savedLocations = state.savedLocations.filter(
-        (item) => item != action.payload
-      )
+        item => item != action.payload
+      );
     },
   },
   extraReducers: (builder: any) => {
@@ -81,12 +87,12 @@ const SessionSlice = createSlice({
       .addCase(
         updateGeoLocation.fulfilled,
         (state: IInitialState, action: PayloadAction<IGeoLocationData>) => {
-          state.isLoading = false
-          state.geoLocation = action.payload
+          state.isLoading = false;
+          state.geoLocation = action.payload;
         }
-      )
+      );
   },
-})
+});
 
 export const {
   updateLoginForm,
@@ -97,6 +103,6 @@ export const {
   updateTheme,
   addLocation,
   removeLocation,
-} = SessionSlice.actions
+} = SessionSlice.actions;
 
-export const SessionReducer = SessionSlice.reducer
+export const SessionReducer = SessionSlice.reducer;

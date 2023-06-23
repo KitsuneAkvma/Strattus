@@ -16,6 +16,7 @@ export interface IUser {
 }
 export interface ISessionSettings {
   tempUnit: 'C' | 'F'
+  speedUnit: "km/h"|'mph'
   theme: 'default' | 'light' | 'dark'
 }
 export interface IGeoLocationData {
