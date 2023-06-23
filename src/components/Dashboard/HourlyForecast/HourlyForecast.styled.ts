@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledHourlyForecast = styled.div`
   max-width: 50rem;
   padding: 0.5rem;
 
-  background: ${({ theme }: any) => theme.colors.background};
-  border-radius: 16px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  ${cardBackground}
 
   .hourly__header {
     padding-block: 1rem;

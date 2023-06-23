@@ -7,7 +7,7 @@ import Store, { persistor } from './Redux/store.ts'
 import App from './App.tsx'
 
 import { TimeThemeProvider } from './utility/Themes/TimeThemeProvider.tsx'
-import { GlobalStyles } from './utility/Themes/Global'
+import { GlobalStyles } from './utility/Themes/Global.ts'
 
 
 

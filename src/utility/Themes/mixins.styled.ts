@@ -21,3 +21,8 @@ export const cardHoverBrighten = `
   &:hover {
     transform: scale(1.01);
   }`;
+export const cardBackground = `
+backdrop-filter: brightness(130%);
+border-radius: 16px;
+
+`;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledDailyForecast = styled.ul`
   max-width: 50rem;
@@ -7,10 +8,7 @@ export const StyledDailyForecast = styled.ul`
   flex-direction: column;
   gap: 0.5em;
 
-  background: ${({ theme }: any) => theme.colors.background};
-  border-radius: 16px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  ${cardBackground}
 
   .daily__forecast__item {
     display: flex;

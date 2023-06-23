@@ -2,21 +2,18 @@ import styled from 'styled-components';
 
 export const StyledDashboardHero = styled.section`
   width: 100vw;
+  height: 100vh;
 
   padding: 1rem;
-
   display: flex;
   flex-direction: column;
   justify-items: center;
 
   gap: 2rem;
 
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+  background: ${({ theme }) => theme.colors.background};
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 0.625rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 
   .hero__current {
     padding: 1rem;

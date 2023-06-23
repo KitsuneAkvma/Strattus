@@ -15,7 +15,7 @@ import { useTempUnits } from '../../../utility/hooks/useTempUnit';
 import { HourlyForecast } from '../HourlyForecast/HourlyForecast';
 import { AlertsCard } from './AlertsCard/AlertsCard';
 import { StyledDashboardHero } from './DashboardHero.styled';
-import { DailyForecast } from '../DailyForecast/DailyForecast';
+
 
 export const DashboardHero = () => {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ export const DashboardHero = () => {
           {useTempUnits('feelsLike')}
         </Typography>
       </div>
-      <AlertsCard /> <HourlyForecast /> <DailyForecast />
+      <AlertsCard /> <HourlyForecast />
     </StyledDashboardHero>
   );
 };

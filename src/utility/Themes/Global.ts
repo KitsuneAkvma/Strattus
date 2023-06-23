@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createGlobalStyle } from 'styled-components'
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
+import { createGlobalStyle } from 'styled-components';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 export const GlobalStyles = createGlobalStyle`
+
 *{
   padding:0;
   margin:0;
@@ -15,7 +16,8 @@ export const GlobalStyles = createGlobalStyle`
 
  body {
   width:100vw;
-  background: ${({ theme }: any) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.secondBackground};
+  
   color: ${({ theme }: any) => theme.colors.color};
   font-size:16px;
  };
@@ -28,4 +30,4 @@ export const GlobalStyles = createGlobalStyle`
  a:hover {
   color: #535bf2;
  }
-`
+`;

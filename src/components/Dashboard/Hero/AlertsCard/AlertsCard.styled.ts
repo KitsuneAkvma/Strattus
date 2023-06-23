@@ -21,4 +21,4 @@ export const StyledAlertsCard = styled.ul`
     font-weight: 700;
     text-transform: uppercase;
   }
-`;
+`
