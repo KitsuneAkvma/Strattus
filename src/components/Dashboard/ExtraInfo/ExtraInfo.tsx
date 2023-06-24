@@ -8,8 +8,22 @@ import { selectWeatherCurrentWeather } from '../../../Redux/selectors';
 import { StyledExtraInfo } from './ExtraInfo.styled';
 export const ExtraInfo = () => {
   const currentWeather = useSelector(selectWeatherCurrentWeather);
-  const airQuality = currentWeather.air_quality;
-  console.log(airQuality);
+  const airQualityIndex = currentWeather.air_quality['gb-defra-index'];
+
+  const determineAirQuality: (index: number) => string = index => {
+    if (index < 3) {
+      return 'Very Good';
+    } else if (index === 3) {
+      return 'Good';
+    } else if (index > 3 && index <= 6) {
+      return 'Moderate';
+    } else if (index > 6 && index <= 9) {
+      return 'Bad';
+    } else {
+      return 'Very Bad';
+    }
+  };
+
   return (
     <StyledExtraInfo>
       <ul className="extra-info">
@@ -31,7 +45,7 @@ export const ExtraInfo = () => {
             variant="body2"
             component="p"
           >
-            ???
+            {determineAirQuality(airQualityIndex)}
           </Typography>
         </li>
         <li className="extra-info__item">
