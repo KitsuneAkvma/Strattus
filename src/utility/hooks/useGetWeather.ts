@@ -13,7 +13,7 @@ export const useGetWeather = async (
 
   try {
     const res: AxiosResponse<IWeatherData> = await axios.get(fetchUrl);
-
+    console.log(res.data);
     return res.data;
   } catch (err) {
     const message = String((err as Error).message);
