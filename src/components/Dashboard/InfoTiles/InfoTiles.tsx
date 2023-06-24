@@ -7,15 +7,15 @@ import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import {
   IWeatherCurrent,
   IWeatherForecast,
-} from '../../../../Redux/Slices/WeatherSlice/types';
+} from '../../../Redux/Slices/WeatherSlice/types';
 import { useSelector } from 'react-redux';
 import {
   selectSessionSettings,
   selectWeatherCurrentWeather,
   selectWeatherForecast,
-} from '../../../../Redux/selectors';
-import { ISessionSettings } from '../../../../Redux/Slices/SessionSlice/types';
-import { useConverterTo24h } from '../../../../utility/hooks/useConverter';
+} from '../../../Redux/selectors';
+import { ISessionSettings } from '../../../Redux/Slices/SessionSlice/types';
+import { useConverterTo24h } from '../../../utility/hooks/useConverter';
 
 export const InfoTiles = () => {
   const currentWeather: IWeatherCurrent = useSelector(

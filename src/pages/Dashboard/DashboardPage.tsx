@@ -1,8 +1,7 @@
-import { StyledDashboard } from './DashboardPage.styled'
-import { DashboardHero } from '../../components/Dashboard/Hero/DashboardHero'
+import { StyledDashboard } from './DashboardPage.styled';
+import { DashboardHero } from '../../components/Dashboard/Hero/DashboardHero';
 import { DailyForecast } from '../../components/Dashboard/DailyForecast/DailyForecast';
-import { InfoTiles } from '../../components/Dashboard/DailyForecast/InfoTiles/InfoTiles';
-
+import { InfoTiles } from '../../components/Dashboard/InfoTiles/InfoTiles';
 
 export const DashboardPage = () => {
   return (
@@ -12,4 +11,4 @@ export const DashboardPage = () => {
       <InfoTiles />
     </StyledDashboard>
   );
-}
+};

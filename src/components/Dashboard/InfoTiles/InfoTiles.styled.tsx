@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { cardBackground } from '../../../../utility/Themes/mixins.styled';
+import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledInfoTiles = styled.section`
   display: grid;
