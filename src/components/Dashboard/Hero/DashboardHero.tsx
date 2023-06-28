@@ -20,7 +20,7 @@ import { StyledDashboardHero } from './DashboardHero.styled';
 export const DashboardHero = () => {
   const dispatch = useDispatch();
   const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation);
-  const city = geoLocation?.city?.name || 'London';
+  const city = geoLocation?.city || 'London';
   const currentWeather: IWeatherCurrent = useSelector(
     selectWeatherCurrentWeather
   );

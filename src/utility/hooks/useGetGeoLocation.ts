@@ -3,10 +3,8 @@ import { IGeoLocationData } from "../../Redux/Slices/SessionSlice/types";
 
 
 
-const API_KEY = process.env.GEOLOCATION_API_KEY;
-const API_URL = API_KEY
-  ? `https://api.geoapify.com/v1/ipinfo?&apiKey=${API_KEY}`
-  : null;
+
+const API_URL =  `http://ip-api.com/json/`;
 
 export const useGetGeoLocation = async () => {
   try {

@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const isDrawerOpen = useSelector(selectGlobalIsSideBarOpen)
 
   const geoLocation = useSelector(selectSessionGeoLocation)
-  const city = geoLocation?.city?.name || 'London'
+  const city = geoLocation?.city || 'London'
 
   const fetchGeoLocation = useCallback(() => {
     dispatch(updateGeoLocation())
