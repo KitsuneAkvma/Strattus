@@ -1,6 +1,8 @@
 import { StyledSettingsPage } from './SettingsPage.styled';
 import {
   Box,
+  Button,
+  FormControl,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -17,6 +19,13 @@ import {
   updateSettingsTempUnit,
 } from '../../Redux/Slices/SessionSlice/SessionSlice';
 import { ChangeEvent } from 'react';
+
+const selectStyles = {
+  minWidth: 80,
+  background: '#fffffff0',
+  borderRadius: 2,
+ 
+};
 
 export const SettingsPage = () => {
   const dispatch = useDispatch();
@@ -37,34 +46,54 @@ export const SettingsPage = () => {
   const navigation = useNavigate();
   return (
     <StyledSettingsPage>
-      <Typography variant="h3" className="page-title">
+      <Typography variant="h4" className="title">
         User Settings
       </Typography>
       <Link to={'...'} onClick={() => navigation(-1)} className="go-back">
-        <KeyboardBackspaceRoundedIcon className="go-back__icon" />
+        <KeyboardBackspaceRoundedIcon
+          className="go-back__icon"
+          fontSize="large"
+        />
       </Link>
       <ul className="settings-list">
         <Box className="settings-list__item">
           <Typography variant="body1">Preferred temperature unit: </Typography>
-          <Select
-            labelId="temperature-unit-select"
-            value={tempUnit}
-            onChange={handleTempUnitUpdate}
-          >
-            <MenuItem value={'C'}>°C</MenuItem>{' '}
-            <MenuItem value={'F'}>°F</MenuItem>{' '}
-          </Select>
+          <FormControl variant="filled" sx={selectStyles}>
+            {' '}
+            <Select
+              labelId="temperature-unit-select"
+              value={tempUnit}
+              variant="filled"
+              label="Temp. Unit"
+              onChange={handleTempUnitUpdate}
+            >
+              <MenuItem value={'C'}>°C</MenuItem>{' '}
+              <MenuItem value={'F'}>°F</MenuItem>{' '}
+            </Select>{' '}
+          </FormControl>
         </Box>{' '}
         <Box className="settings-list__item">
-          <Typography variant="body1">Preferred speed unit: </Typography>
-          <Select
-            labelId="speed-unit-select"
-            value={speedUnit}
-            onChange={handleSpeedUnitUpdate}
-          >
-            <MenuItem value={'km/h'}>km/h</MenuItem>{' '}
-            <MenuItem value={'mph'}>mph</MenuItem>{' '}
-          </Select>
+          <Typography variant="body1">Preferred speed unit: </Typography>{' '}
+          <FormControl variant="filled" sx={selectStyles}>
+            <Select
+              labelId="speed-unit-select"
+              value={speedUnit}
+              variant="filled"
+              label="Speed Unit"
+              onChange={handleSpeedUnitUpdate}
+            >
+              <MenuItem value={'km/h'}>km/h</MenuItem>{' '}
+              <MenuItem value={'mph'}>mph</MenuItem>{' '}
+            </Select>
+          </FormControl>
+        </Box>{' '}
+        <Box className="settings-list__item">
+          <Typography variant="body1">Menage your locations </Typography>
+          <Link to="/locations">
+            <Button variant="contained" sx={{ background: '#a1b6ff' }}>
+              Menage
+            </Button>
+          </Link>
         </Box>
       </ul>
     </StyledSettingsPage>

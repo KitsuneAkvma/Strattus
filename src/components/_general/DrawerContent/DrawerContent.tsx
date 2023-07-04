@@ -1,6 +1,6 @@
 import { StyledDrawerContent } from './DrawerContent.styled';
 import PlaceIcon from '@mui/icons-material/Place';
-import { Box, Typography } from '@mui/material';
+import {  Typography } from '@mui/material';
 
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';

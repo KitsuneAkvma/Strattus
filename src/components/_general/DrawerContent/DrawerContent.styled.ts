@@ -18,9 +18,7 @@ export const StyledDrawerContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-
-
-    &__icon > svg {
+    border- &__icon > svg {
       width: 100%;
       height: 100%;
     }
@@ -40,5 +38,10 @@ export const StyledDrawerContent = styled.div`
   .localizations__item__section-name {
     display: flex;
     gap: 1rem;
+  }
+  .saved-localizations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
