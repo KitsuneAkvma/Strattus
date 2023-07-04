@@ -16,7 +16,6 @@ import { HourlyForecast } from '../HourlyForecast/HourlyForecast';
 import { AlertsCard } from './AlertsCard/AlertsCard';
 import { StyledDashboardHero } from './DashboardHero.styled';
 
-
 export const DashboardHero = () => {
   const dispatch = useDispatch();
   const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation);

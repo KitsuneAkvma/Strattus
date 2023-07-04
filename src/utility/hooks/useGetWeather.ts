@@ -9,10 +9,11 @@ const API_URL = API_KEY
 export const useGetWeather = async (
   location: string
 ): Promise<IWeatherData> => {
-  const fetchUrl = `${API_URL}&q=${location}&days=7&aqi=yes&alerts=yes`;
+  const fetchUrl = `${API_URL}&q=${location}&days=3&aqi=yes&alerts=yes`;
 
   try {
     const res: AxiosResponse<IWeatherData> = await axios.get(fetchUrl);
+
 
     return res.data;
   } catch (err) {

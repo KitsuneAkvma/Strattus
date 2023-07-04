@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledDailyForecast = styled.ul`
-  max-width: 50rem;
+  width: 95vw;
   padding: 0.5rem 1rem;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -14,6 +16,7 @@ export const StyledDailyForecast = styled.ul`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
   }
   .daily__forecast__item__day {
     width: 30%;

@@ -7,7 +7,7 @@ const updateCurrentWeather = createAsyncThunk(
     try {
       const location = locationQuery;
       const weather = await useGetWeather(location);
-
+     
       return weather;
     } catch (err) {
       const message = String((err as Error).message);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledHourlyForecast = styled.div`
-  max-width: 50rem;
+  width: 85vw;
   padding: 0.5rem;
 
   ${cardBackground}

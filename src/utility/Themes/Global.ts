@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
 
  a {
   font-weight: 500;
-  color: #646cff;
+  color: #a1b6ff;
   text-decoration: inherit;
  }
  a:hover {

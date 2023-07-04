@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledDashboardHero = styled.section`
+  position: relative;
+  z-index: 0;
+
   width: 100vw;
   height: 100vh;
 
-  padding: 1rem;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -12,8 +15,6 @@ export const StyledDashboardHero = styled.section`
   gap: 2rem;
 
   background: ${({ theme }) => theme.colors.background};
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 
   .hero__current {
     padding: 1rem;

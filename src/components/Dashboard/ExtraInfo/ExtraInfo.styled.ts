@@ -3,7 +3,8 @@ import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledExtraInfo = styled.section`
   padding: 1rem 1.5rem;
-  max-width: 50rem;
+  width: 90vw;
+  margin: 0 auto;
   ${cardBackground};
 
   .extra-info {
