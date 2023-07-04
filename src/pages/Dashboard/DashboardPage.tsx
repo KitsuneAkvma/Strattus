@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectGlobalIsSideBarOpen } from '../../Redux/selectors';
 import { updateIsSideBarOpen } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const drawerCustomStyles = {
   width: '90vw',
@@ -23,12 +24,17 @@ const drawerCustomStyles = {
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    return handleDrawerClose;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isDrawerOpen = useSelector(selectGlobalIsSideBarOpen);
   const handleDrawerClose = () => {
     dispatch(updateIsSideBarOpen(false));
   };
   const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true));
+
   return (
     <StyledDashboard>
       <SwipeableDrawer

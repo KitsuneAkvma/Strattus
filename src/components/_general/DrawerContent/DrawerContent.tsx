@@ -53,7 +53,7 @@ export const DrawerContent = () => {
               </span>
             </li>
           </ul>
-          <Link to="/settings/locations">Menage Locations</Link>
+          <Link to="/locations">Menage Locations</Link>
         </li>{' '}
         <div className="separator" />
       </ul>

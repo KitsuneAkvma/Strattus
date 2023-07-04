@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CircularProgress } from '@mui/material';
 import { updateGeoLocation } from './Redux/Slices/SessionSlice/operations';
 import { updateCurrentWeather } from './Redux/Slices/WeatherSlice/operations';
 import { selectSessionGeoLocation } from './Redux/selectors';
@@ -27,6 +26,7 @@ const App: React.FC = () => {
   useEffect(() => {
     fetchGeoLocation();
     fetchWeather(city);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city]);
 

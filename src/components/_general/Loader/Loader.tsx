@@ -6,9 +6,13 @@ export const Loader = () => {
       sx={{
         width: '100vw',
         height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#1C1A19',
       }}
     >
-      <CircularProgress />
+      <CircularProgress size={100} sx={{ color: '#a1b6ff' }} />
     </Paper>
   );
 };

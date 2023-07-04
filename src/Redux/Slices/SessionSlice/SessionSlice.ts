@@ -65,8 +65,11 @@ const SessionSlice = createSlice({
     updateToken: (state, action) => {
       state.token = action.payload;
     },
-    updateTempUnit: (state, action) => {
+    updateSettingsTempUnit: (state, action) => {
       state.sessionSettings.tempUnit = action.payload;
+    },
+    updateSettingsSpeedUnit: (state, action) => {
+      state.sessionSettings.speedUnit = action.payload;
     },
     updateTheme: (state, action) => {
       state.sessionSettings.theme = action.payload;
@@ -99,7 +102,8 @@ export const {
   clearLoginForm,
   updateRegisterForm,
   clearRegisterForm,
-  updateTempUnit,
+  updateSettingsTempUnit,
+  updateSettingsSpeedUnit,
   updateTheme,
   addLocation,
   removeLocation,
