@@ -7,7 +7,7 @@ export const StyledDashboard = styled.div`
 
   .secondary-info {
     position: relative;
-    bottom: 3rem;
+    bottom: 10vh;
     z-index: 2;
 
     display: flex;

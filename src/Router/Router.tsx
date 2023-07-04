@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DashboardPage } from '../pages/Dashboard/DashboardPage';
 import React from 'react';
 import { SettingsPage } from '../pages/Settings/SettingsPage';
-import { Loader } from '../components/_general/Loader/Loader';
+import { LocationsPage } from '../pages/Locations/LocationsPage';
 
 const router = createBrowserRouter([
   { path: '/', element: <DashboardPage /> },
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     path: '/settings',
     element: <SettingsPage />,
   },
-  { path: '/locations', element: <Loader /> },
+  { path: '/locations', element: <LocationsPage /> },
 ]);
 
 const Router: React.FC = () => {

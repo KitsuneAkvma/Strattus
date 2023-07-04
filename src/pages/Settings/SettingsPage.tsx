@@ -24,7 +24,6 @@ const selectStyles = {
   minWidth: 80,
   background: '#fffffff0',
   borderRadius: 2,
- 
 };
 
 export const SettingsPage = () => {
@@ -46,7 +45,11 @@ export const SettingsPage = () => {
   const navigation = useNavigate();
   return (
     <StyledSettingsPage>
-      <Typography variant="h4" className="title">
+      <Typography
+        variant="h4"
+        className="title"
+        sx={{ color: '#e0e7fd', fontWeight: 700 }}
+      >
         User Settings
       </Typography>
       <Link to={'...'} onClick={() => navigation(-1)} className="go-back">

@@ -3,7 +3,7 @@ import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledDailyForecast = styled.ul`
   width: 95vw;
-  padding: 0.5rem 1rem;
+  padding: 1.2rem 1rem;
   margin: 0 auto;
 
   display: flex;

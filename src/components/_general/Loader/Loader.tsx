@@ -9,7 +9,7 @@ export const Loader = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#1C1A19',
+        background: 'none',
       }}
     >
       <CircularProgress size={100} sx={{ color: '#a1b6ff' }} />

@@ -4,9 +4,9 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { colors } from './variables';
 
 export const GlobalStyles = createGlobalStyle`
-
 *{
   padding:0;
   margin:0;
@@ -20,14 +20,15 @@ export const GlobalStyles = createGlobalStyle`
   
   color: ${({ theme }: any) => theme.colors.color};
   font-size:16px;
+  background-color: ${colors.bgDark};
  };
 
  a {
   font-weight: 500;
-  color: #a1b6ff;
+  color: ${colors.primary};
   text-decoration: inherit;
  }
  a:hover {
-  color: #535bf2;
+  color: ${colors.primaryHover};
  }
 `;

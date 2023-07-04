@@ -1,38 +1,40 @@
-import { ThemeProvider } from 'styled-components';
-import { day, dusk, morning, night } from './Themes.styled';
 import { useSelector } from 'react-redux';
-import {
-  selectWeatherCurrentLocation,
-  selectWeatherForecast,
-} from '../../Redux/selectors';
-import { IWeatherForecast } from '../../Redux/Slices/WeatherSlice/types';
-import { useConverterTo24h } from '../hooks/useConverter';
+import { ThemeProvider } from 'styled-components';
+import { selectWeatherCurrentWeather } from '../../Redux/selectors';
+import { IWeatherCurrent } from '../../Redux/Slices/WeatherSlice/types';
+import { day, night } from './Themes.styled';
 
 export const TimeThemeProvider = ({ children }: any) => {
-  const location = useSelector(selectWeatherCurrentLocation);
-  const forecast: Array<IWeatherForecast> = useSelector(selectWeatherForecast);
-  const { sunrise, sunset } = forecast
-    ? forecast[0].astro
-    : { sunrise: undefined, sunset: undefined };
-  const sunrise24h = useConverterTo24h(sunrise);
-  const sunset24h = useConverterTo24h(sunset);
+  const currentWeather: IWeatherCurrent =
+    useSelector(selectWeatherCurrentWeather) || 1;
+  //WIP// const location: IWeatherLocation = useSelector(selectWeatherCurrentLocation);
+  // const forecast: Array<IWeatherForecast> = useSelector(selectWeatherForecast);
+  // const { sunrise, sunset } = forecast
+  //   ? forecast[0].astro
+  //   : { sunrise: undefined, sunset: undefined };
+  // const sunrise24h = useConverterTo24h(sunrise);
+  // const sunset24h = useConverterTo24h(sunset);
 
-  const time = location ? new Date(location?.localtime) : undefined;
+  // const time = location ? new Date(location?.localtime) : undefined;
 
-  const getTimeOfDay = (date: Date | undefined) => {
-    if (!date || !forecast || !sunrise24h || !sunset24h) return day;
+  // const getTimeOfDay = (date: Date | undefined) => {
+  //   if (!date || !forecast || !sunrise24h || !sunset24h) return day;
 
-    const hour = date.getHours();
-    const sunriseStart = sunrise24h[0];
-    const sunriseEnd = sunrise24h[0] + 1;
-    const sunsetStart = sunset24h[0];
-    const sunsetEnd = sunset24h[0] + 1;
+  //   const hour = date.getHours();
+  //   const sunriseStart = sunrise24h[0];
+  //   const sunriseEnd = sunrise24h[0] + 1;
+  //   const sunsetStart = sunset24h[0];
+  //   const sunsetEnd = sunset24h[0] + 1;
 
-    if (hour >= sunriseStart && hour < sunriseEnd) return morning;
-    else if (hour >= sunriseEnd && hour < sunriseStart) return day;
-    else if (hour >= sunsetStart && hour < sunsetEnd) return dusk;
-    else return night;
-  };
+  //   if (hour >= sunriseStart && hour < sunriseEnd) return morning;
+  //   else if (hour >= sunriseEnd && hour < sunriseStart) return day;
+  //   else if (hour >= sunsetStart && hour < sunsetEnd) return dusk;
+  //   else return night;
+  // };
 
-  return <ThemeProvider theme={getTimeOfDay(time)}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={currentWeather.is_day ? day : night}>
+      {children}
+    </ThemeProvider>
+  );
 };

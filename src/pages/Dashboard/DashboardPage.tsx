@@ -10,15 +10,17 @@ import { selectGlobalIsSideBarOpen } from '../../Redux/selectors';
 import { updateIsSideBarOpen } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { lightTextColors } from '../../utility/Themes/variables';
 
 const drawerCustomStyles = {
   width: '90vw',
-  background: 'rgba(255, 255, 255, 0.5)',
+  background: 'rgba(102, 109, 135, 0.6);',
   borderRadius: '0 16px 16px 0 ',
+  color: lightTextColors.text1,
 
-  ' boxShadow': '0 4px 30px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
   backdropFilter: 'blur(8.6px)',
-  WebkitBackdropFilter: 'blur(8.6px)',
+  WebkitBackdropFilter: 'blur(6.8px)',
   border: ' 1px solid rgba(255, 255, 255, 0.3)',
 };
 
