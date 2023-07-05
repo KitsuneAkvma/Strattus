@@ -19,7 +19,7 @@ export const StyledLocationCard = styled.div`
     align-items: flex-end;
 
     &__img {
-      width: 34px;
+      width: 40px;
       aspect-ratio: 1/1;
       text-align: center;
     }

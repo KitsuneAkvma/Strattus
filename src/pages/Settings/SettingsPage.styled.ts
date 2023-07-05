@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../utility/Themes/variables';
 
 export const StyledSettingsPage = styled.section`
   position: relative;
@@ -23,12 +24,12 @@ export const StyledSettingsPage = styled.section`
   .title {
     width: 100%;
 
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid ${colors.primaryLight};
     text-align: center;
   }
   .go-back {
     position: absolute;
-    top: 2.1rem;
+    top: 1.5rem;
     left: 0;
   }
 `;

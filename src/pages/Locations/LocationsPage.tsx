@@ -1,6 +1,6 @@
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import { Box, IconButton, Typography } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, unstable_HistoryRouter, useNavigate } from 'react-router-dom';
 import { StyledLocationsPage } from './LocationsPage.styled';
 
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -15,6 +15,8 @@ import { selectGlobalIsEditModeOpen } from '../../Redux/selectors';
 
 export const LocationsPage = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
 
   const handleOpenEditMode = () => {
@@ -23,8 +25,13 @@ export const LocationsPage = () => {
   const handleCloseEditMode = () => {
     dispatch(updateIsEditModeOn(false));
   };
+  const handleAddLocation = () => {
+    navigation('/locations/search');
+  };
+  const handleGoBack = () => {
+    navigation(-1);
+  };
 
-  const navigation = useNavigate();
   return (
     <StyledLocationsPage>
       <Typography
@@ -34,17 +41,17 @@ export const LocationsPage = () => {
       >
         Your Locations
       </Typography>
-      <Link
+      <IconButton
         aria-label="go back"
-        to={'...'}
-        onClick={() => navigation(-1)}
+        onClick={handleGoBack}
         className="button button--go-back"
       >
         <KeyboardBackspaceRoundedIcon
           className="go-back__icon"
           fontSize="large"
+          sx={{ color: colors.primary }}
         />
-      </Link>
+      </IconButton>
       <ul className="locations-list">
         <Box className="locations-list__item">
           <Typography
@@ -95,7 +102,11 @@ export const LocationsPage = () => {
         </Box>
       ) : (
         <Box className="edit-buttons">
-          <IconButton aria-label="add" className="button--add">
+          <IconButton
+            aria-label="add"
+            className="button--add"
+            onClick={handleAddLocation}
+          >
             <AddRoundedIcon
               sx={{ color: lightTextColors.text1 }}
               fontSize="large"

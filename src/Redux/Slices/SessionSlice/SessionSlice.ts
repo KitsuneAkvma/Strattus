@@ -6,9 +6,11 @@ import {
   IGeoLocationData,
   ILoginForm,
   IRegisterForm,
+  ISearchResult,
   ISessionSettings,
   IUser,
 } from './types';
+import { IWeatherLocation } from '../WeatherSlice/types';
 
 interface IInitialState {
   isLoading: boolean;
@@ -20,7 +22,8 @@ interface IInitialState {
   token: string;
   geoLocation: IGeoLocationData | undefined;
   sessionSettings: ISessionSettings;
-  savedLocations: Array<string>;
+  savedLocations: string[];
+  searchResults: ISearchResult[];
 }
 
 const initialState: IInitialState = {
@@ -34,6 +37,7 @@ const initialState: IInitialState = {
   geoLocation: undefined,
   sessionSettings: { tempUnit: 'C', speedUnit: 'km/h', theme: 'default' },
   savedLocations: [],
+  searchResults: [],
 };
 const handlePending = (state: TRootState) => {
   state.isLoading = true;
@@ -82,6 +86,9 @@ const SessionSlice = createSlice({
         item => item != action.payload
       );
     },
+    updateSearchResults: (state, action) => {
+      state.searchResults = action.payload;
+    },
   },
   extraReducers: (builder: any) => {
     builder
@@ -107,6 +114,7 @@ export const {
   updateTheme,
   addLocation,
   removeLocation,
+  updateSearchResults,
 } = SessionSlice.actions;
 
 export const SessionReducer = SessionSlice.reducer;

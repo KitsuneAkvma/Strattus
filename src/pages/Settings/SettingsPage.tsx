@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  IconButton,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -19,6 +20,7 @@ import {
   updateSettingsTempUnit,
 } from '../../Redux/Slices/SessionSlice/SessionSlice';
 import { ChangeEvent } from 'react';
+import { colors } from '../../utility/Themes/variables';
 
 const selectStyles = {
   minWidth: 80,
@@ -42,6 +44,9 @@ export const SettingsPage = () => {
     dispatch(updateSettingsSpeedUnit(value));
   };
 
+  const handleGoBack = () => {
+    navigation(-1);
+  };
   const navigation = useNavigate();
   return (
     <StyledSettingsPage>
@@ -52,12 +57,13 @@ export const SettingsPage = () => {
       >
         User Settings
       </Typography>
-      <Link to={'...'} onClick={() => navigation(-1)} className="go-back">
+      <IconButton onClick={handleGoBack} className="go-back">
         <KeyboardBackspaceRoundedIcon
           className="go-back__icon"
           fontSize="large"
+          sx={{ color: colors.primary }}
         />
-      </Link>
+      </IconButton>
       <ul className="settings-list">
         <Box className="settings-list__item">
           <Typography variant="body1">Preferred temperature unit: </Typography>

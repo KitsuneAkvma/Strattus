@@ -6,6 +6,7 @@ import { updateCurrentWeather } from './Redux/Slices/WeatherSlice/operations';
 import { selectSessionGeoLocation } from './Redux/selectors';
 import { LazyRouter } from './utility/lazyComponents';
 import { Loader } from './components/_general/Loader/Loader';
+import { BrowserRouter } from 'react-router-dom';
 
 const App: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,6 +33,7 @@ const App: React.FC = () => {
 
   return (
     <React.Suspense fallback={<Loader />}>
+      {' '}
       <LazyRouter />
     </React.Suspense>
   );

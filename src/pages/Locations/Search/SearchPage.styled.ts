@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { colors } from '../../utility/Themes/variables';
+import { colors } from '../../../utility/Themes/variables';
 
-export const StyledLocationsPage = styled.section`
+export const StyledSearchPage = styled.section`
   position: relative;
   width: 80vw;
   padding-top: 2rem;

@@ -13,6 +13,8 @@ const selectSessionSettings = (state: TRootState) =>
   state.session.sessionSettings;
 const selectSessionLocations = (state: TRootState) =>
   state.session.savedLocations;
+const selectSessionSearchResults = (state: TRootState) =>
+  state.session.searchResults;
 
 const selectWeatherCurrentLocation = (state: TRootState) =>
   state.weather.currentLocation;
@@ -36,6 +38,7 @@ export {
   selectSessionGeoLocation,
   selectSessionSettings,
   selectSessionLocations,
+  selectSessionSearchResults,
 };
 export {
   selectWeatherCurrentLocation,
