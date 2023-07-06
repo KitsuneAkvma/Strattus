@@ -11,7 +11,7 @@ import {
   selectSessionFavoriteLocation,
   selectSessionFirstVisit,
   selectSessionGeoLocation,
-  selectWeatherCurrentLocation
+  selectWeatherCurrentWeather,
 } from './Redux/selectors';
 import { Loader } from './components/_general/Loader/Loader';
 import { LazyRouter } from './utility/lazyComponents';
@@ -39,10 +39,10 @@ const App: React.FC = () => {
     },
     [dispatch]
   );
-  const currentLocation = useSelector(selectWeatherCurrentLocation);
+  const currentWeather = useSelector(selectWeatherCurrentWeather);
   if (isFirstVisit || !favoriteLocation) {
     dispatch(updateFirstVisit(false));
-    dispatch(updateFavoriteLocation(currentLocation));
+    dispatch(updateFavoriteLocation(currentWeather));
   }
   return (
     <React.Suspense fallback={<Loader />}>

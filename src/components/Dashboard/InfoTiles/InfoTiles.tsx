@@ -5,7 +5,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AirIcon from '@mui/icons-material/Air';
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import {
-  IWeatherCurrent,
+  IWeatherData,
   IWeatherForecast,
 } from '../../../Redux/Slices/WeatherSlice/types';
 import { useSelector } from 'react-redux';
@@ -18,17 +18,15 @@ import { ISessionSettings } from '../../../Redux/Slices/SessionSlice/types';
 import { useConverterTo24h } from '../../../utility/hooks/useConverter';
 
 export const InfoTiles = () => {
-  const currentWeather: IWeatherCurrent = useSelector(
-    selectWeatherCurrentWeather
-  );
+  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
   const forecast: IWeatherForecast[] = useSelector(selectWeatherForecast);
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
 
-  const humidity: number = currentWeather.humidity;
+  const humidity: number = currentWeather.current.humidity;
   const windSpeed: number =
     userSettings.speedUnit === 'km/h'
-      ? currentWeather.wind_kph
-      : currentWeather.wind_mph;
+      ? currentWeather.current.wind_kph
+      : currentWeather.current.wind_mph;
   const speedUnit: string = userSettings.speedUnit;
 
   const sunriseTime12h: string = forecast[0].astro.sunrise;
@@ -51,7 +49,7 @@ export const InfoTiles = () => {
       return 'Extreme';
     }
   };
-  const uvIndex: string = declareUvIndex(currentWeather.uv);
+  const uvIndex: string = declareUvIndex(currentWeather.current.uv);
   return (
     <StyledInfoTiles>
       <div className="infoTile">

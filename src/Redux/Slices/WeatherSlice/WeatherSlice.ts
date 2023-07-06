@@ -5,17 +5,14 @@ import { updateCurrentWeather } from './operations';
 import {
   IWeatherAirQuality,
   IWeatherAlerts,
-  IWeatherCurrent,
   IWeatherData,
   IWeatherForecast,
-  IWeatherLocation,
 } from './types';
 
 interface IInitialState {
   isLoading: boolean;
   error: object | undefined;
-  currentLocation: IWeatherLocation | undefined;
-  currentWeather: IWeatherCurrent | undefined;
+  currentWeather: IWeatherData | undefined;
   forecast: IWeatherForecast[] | undefined;
   airQuality: IWeatherAirQuality | undefined;
   alerts: IWeatherAlerts | undefined;
@@ -24,7 +21,6 @@ interface IInitialState {
 const initialState: IInitialState = {
   isLoading: false,
   error: undefined,
-  currentLocation: undefined,
   currentWeather: undefined,
   forecast: undefined,
   airQuality: undefined,
@@ -50,10 +46,8 @@ const WeatherSlice: Slice = createSlice({
       .addCase(
         updateCurrentWeather.fulfilled,
         (state: IInitialState, action: PayloadAction<IWeatherData>) => {
-  
           state.isLoading = false;
-          state.currentWeather = action.payload?.current;
-          state.currentLocation = action.payload?.location;
+          state.currentWeather = action.payload;
           state.forecast = action.payload.forecast?.forecastday;
           state.alerts = action.payload?.alerts;
         }

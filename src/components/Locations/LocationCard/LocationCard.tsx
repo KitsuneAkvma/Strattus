@@ -1,32 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useSelector } from 'react-redux';
-import { StyledLocationCard } from './LocationCard.styled';
-import { Typography, Box } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { Box, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateIsEditModeOn } from '../../../Redux/Slices/GlobalSlice/GlobalSlice';
+import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectGlobalIsEditModeOpen,
-  selectWeatherCurrentLocation,
   selectWeatherCurrentWeather,
 } from '../../../Redux/selectors';
-import {
-  IWeatherCurrent,
-  IWeatherLocation,
-} from '../../../Redux/Slices/WeatherSlice/types';
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
-import { useEffect } from 'react';
-import { updateIsEditModeOn } from '../../../Redux/Slices/GlobalSlice/GlobalSlice';
-import { useDispatch } from 'react-redux';
+import { StyledLocationCard } from './LocationCard.styled';
 
 export const LocationCard = () => {
   const dispatch = useDispatch();
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
 
-  const currentWeather: IWeatherCurrent = useSelector(
-    selectWeatherCurrentWeather
-  );
-  const currentLocation: IWeatherLocation = useSelector(
-    selectWeatherCurrentLocation
-  );
+  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
+
   const currentTemp = useTempUnits('current');
   const maxTemp = useTempUnits('max');
   const minTemp = useTempUnits('min');
@@ -41,12 +32,12 @@ export const LocationCard = () => {
   return (
     <StyledLocationCard>
       <Box className="location__info">
-        <Typography variant="h6">{currentLocation.name}</Typography>{' '}
+        <Typography variant="h6">{currentWeather.location.name}</Typography>{' '}
         <Typography variant="caption" sx={{ color: '#c3c3c3dd' }}>
-          {currentLocation.region}{' '}
+          {currentWeather.location.region}{' '}
         </Typography>{' '}
         <Typography variant="caption" sx={{ color: '#c3c3c3dd' }}>
-          {currentLocation.localtime}
+          {currentWeather.location.localtime}
         </Typography>
       </Box>{' '}
       {isEditModeOpen ? (
@@ -57,7 +48,7 @@ export const LocationCard = () => {
         <Box className="location__weather">
           <Typography variant="h4">
             <img
-              src={currentWeather.condition.icon}
+              src={currentWeather.current.condition.icon}
               alt="weather icon"
               className="location__weather__img"
             />{' '}

@@ -8,10 +8,14 @@ import AddLocationRoundedIcon from '@mui/icons-material/AddLocationRounded';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectSessionFavoriteLocation } from '../../../Redux/selectors';
+import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 
 export const DrawerContent = () => {
-  const favoriteLocation = useSelector(selectSessionFavoriteLocation);
-  console.log({ favoriteLocation });
+  const favoriteLocation: IWeatherData = useSelector(
+    selectSessionFavoriteLocation
+  );
+  const { current: favCurrent, location: favLocation } = favoriteLocation;
+
   return (
     <StyledDrawerContent>
       <Link to="/settings" className="settings">
@@ -34,11 +38,16 @@ export const DrawerContent = () => {
             {' '}
             <span className="favorites__item__name">
               <PlaceIcon className="favorites__item__name__icon" />
-              <p className="favorites__item__name__text">
-                {favoriteLocation.name}
-              </p>
+              <p className="favorites__item__name__text">{favLocation.name}</p>
             </span>{' '}
-            <Box className="saved-localizations__item__info">info</Box>
+            <Box className="saved-localizations__item__info">
+              <img
+                src={favoriteLocation.current.condition.icon}
+                alt="weather icon"
+                className="saved-localizations__item__info__icon"
+              />{' '}
+              <Typography className="saved-localizations__item__info__temp"></Typography>
+            </Box>
           </Box>
         </li>{' '}
         <div className="separator" />

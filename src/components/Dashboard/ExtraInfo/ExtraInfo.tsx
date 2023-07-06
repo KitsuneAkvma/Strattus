@@ -6,12 +6,12 @@ import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectWeatherCurrentWeather } from '../../../Redux/selectors';
 import { StyledExtraInfo } from './ExtraInfo.styled';
-import { IWeatherCurrent } from '../../../Redux/Slices/WeatherSlice/types';
+import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
+('../../../Redux/Slices/WeatherSlice/types');
 export const ExtraInfo = () => {
-  const currentWeather: IWeatherCurrent = useSelector(
-    selectWeatherCurrentWeather
-  );
-  const airQualityIndex = currentWeather.air_quality['gb-defra-index'];
+  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
+  console.log({ currentWeather });
+  const airQualityIndex = currentWeather.current.air_quality['gb-defra-index'];
 
   const determineAirQuality: (index: number) => string = index => {
     if (index < 3) {

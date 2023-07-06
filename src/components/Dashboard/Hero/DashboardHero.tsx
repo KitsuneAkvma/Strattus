@@ -2,7 +2,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { IGeoLocationData } from '../../../Redux/Slices/SessionSlice/types';
-import { IWeatherCurrent } from '../../../Redux/Slices/WeatherSlice/types';
+import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectSessionGeoLocation,
   selectWeatherCurrentWeather,
@@ -20,9 +20,7 @@ export const DashboardHero = () => {
   const dispatch = useDispatch();
   const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation);
   const city = geoLocation?.city || 'London';
-  const currentWeather: IWeatherCurrent = useSelector(
-    selectWeatherCurrentWeather
-  );
+  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
 
   const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true));
   return (
@@ -45,12 +43,12 @@ export const DashboardHero = () => {
             {useTempUnits('current')}
           </Typography>
           <Typography variant="h6" component="p">
-            {currentWeather.condition.text}
+            {currentWeather.current.condition.text}
           </Typography>
         </div>
         <img
           className="hero__current__image"
-          src={currentWeather.condition.icon}
+          src={currentWeather.current.condition.icon}
         />
       </div>
       <div className="hero__location">

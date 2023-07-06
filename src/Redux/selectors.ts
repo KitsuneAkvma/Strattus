@@ -12,9 +12,6 @@ const selectSessionFavoriteLocation = (state: TRootState) =>
   state.session.favoriteLocation;
 const selectSessionSearchResults = (state: TRootState) =>
   state.session.searchResults;
-
-const selectWeatherCurrentLocation = (state: TRootState) =>
-  state.weather.currentLocation;
 const selectWeatherCurrentWeather = (state: TRootState) =>
   state.weather.currentWeather;
 const selectWeatherForecast = (state: TRootState) => state.weather.forecast;
@@ -27,19 +24,12 @@ const selectGlobalIsEditModeOpen = (state: TRootState) =>
   state.global.isEditModeOn;
 
 export {
-  selectSessionFirstVisit,
-  selectSessionGeoLocation,
-  selectSessionSettings,
-  selectSessionLocations,
-  selectSessionFavoriteLocation,
-  selectSessionSearchResults,
-};
-export {
-  selectWeatherCurrentLocation,
-  selectWeatherCurrentWeather,
-  selectWeatherForecast,
-  selectWeatherAirQuality,
+  selectSessionFavoriteLocation, selectSessionFirstVisit,
+  selectSessionGeoLocation, selectSessionLocations, selectSessionSearchResults, selectSessionSettings, selectWeatherAirQuality,
   selectWeatherAlerts,
+  selectWeatherCurrentWeather,
+  selectWeatherForecast
 };
 
-export { selectGlobalIsSideBarOpen, selectGlobalIsEditModeOpen };
+  export { selectGlobalIsEditModeOpen, selectGlobalIsSideBarOpen };
+
