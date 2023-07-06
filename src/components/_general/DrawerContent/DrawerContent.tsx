@@ -1,6 +1,6 @@
 import { StyledDrawerContent } from './DrawerContent.styled';
 import PlaceIcon from '@mui/icons-material/Place';
-import {  Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
@@ -14,7 +14,6 @@ export const DrawerContent = () => {
         {' '}
         <SettingsRoundedIcon className="setting__icon" />
       </Link>
-
       <ul className="localizations">
         <li className="localizations__item">
           <span className="localizations__item__section-name">
@@ -27,10 +26,14 @@ export const DrawerContent = () => {
               Favorite location
             </Typography>
           </span>
-          <span className="favorites__item__name">
-            <PlaceIcon className="favorites__item__name__icon" />
-            <p className="favorites__item__name__text"></p>
-          </span>
+          <Box className="favorites__item">
+            {' '}
+            <span className="favorites__item__name">
+              <PlaceIcon className="favorites__item__name__icon" />
+              <p className="favorites__item__name__text"></p>
+            </span>{' '}
+            <Box className="saved-localizations__item__info">info</Box>
+          </Box>
         </li>{' '}
         <div className="separator" />
         <li className="localizations__item">
@@ -46,17 +49,22 @@ export const DrawerContent = () => {
             </Typography>
           </span>
           <ul className="saved-localizations">
-            <li className="saved-localization__item">
-              <span className="saved-localization__item__name">
-                <PlaceIcon className="saved-localization__item__name__icon" />
-                <p className="saved-localization__item__name__text"></p>
+            <li className="saved-localizations__item">
+              <span className="saved-localizations__item__name">
+                <PlaceIcon className="saved-localizations__item__name__icon" />
+                <p className="saved-localizations__item__name__text"></p>
               </span>
-            </li>
+              <Box className="saved-localizations__item__info">info</Box>
+            </li>{' '}
           </ul>
-          <Link to="/locations">Menage Locations</Link>
         </li>{' '}
         <div className="separator" />
-      </ul>
+      </ul>{' '}
+      <Link to="/locations" className="menage-link">
+        <Button variant="contained" className="menage-link__button">
+          Menage Locations
+        </Button>
+      </Link>
     </StyledDrawerContent>
   );
 };

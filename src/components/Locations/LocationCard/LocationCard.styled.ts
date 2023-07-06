@@ -9,6 +9,7 @@ export const StyledLocationCard = styled.div`
   backdrop-filter: brightness(150%);
   border-radius: 20px;
   .location__info {
+    margin-block: 0.35rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

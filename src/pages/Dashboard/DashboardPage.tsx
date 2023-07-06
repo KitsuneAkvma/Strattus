@@ -45,6 +45,7 @@ export const DashboardPage = () => {
         onOpen={handleDrawerOpen}
         onClose={handleDrawerClose}
         PaperProps={{ sx: drawerCustomStyles }}
+        aria-label="side menu"
       >
         <DrawerContent />
       </SwipeableDrawer>

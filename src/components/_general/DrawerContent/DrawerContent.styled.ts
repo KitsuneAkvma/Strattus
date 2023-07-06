@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { colors, lightTextColors } from '../../../utility/Themes/variables';
 
-export const StyledDrawerContent = styled.div`
-  width: 90vw;
+export const StyledDrawerContent = styled.aside`
+  width: 100%;
   height: 100vh;
   margin-top: 5rem;
+  padding-inline: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .settings {
     position: absolute;
@@ -29,19 +30,51 @@ export const StyledDrawerContent = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    &__item {
+      align-self: flex-start;
+    }
   }
   .separator {
-    width: 60%;
-    height: 3px;
-    background-color: white;
+    width: 100%;
+    height: 1px;
+    margin-block: 1rem;
+    border: 1px dashed ${colors.primaryLight};
   }
   .localizations__item__section-name {
+    margin-bottom: 1rem;
     display: flex;
     gap: 1rem;
+    align-self: flex-start;
+
+    color: ${lightTextColors.text2};
+    &__icon {
+      color: ${lightTextColors.text1};
+    }
   }
+
   .saved-localizations {
     display: flex;
     flex-direction: column;
+  }
+
+  .favorites__item,
+  .saved-localizations__item {
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+
+    color: ${lightTextColors.text3};
+  }
+  .menage-link {
+    margin: 1rem auto;
+
+    &__button {
+      padding: 0.5rem 4rem;
+      border-radius: 20px;
+      background: none;
+      backdrop-filter: brightness(110%);
+      box-shadow: none;
+    }
   }
 `;
