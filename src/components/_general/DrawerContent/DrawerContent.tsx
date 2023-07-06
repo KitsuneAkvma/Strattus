@@ -9,13 +9,14 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectSessionFavoriteLocation } from '../../../Redux/selectors';
 import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
+import { useTempUnits } from '../../../utility/hooks/useTempUnit';
 
 export const DrawerContent = () => {
   const favoriteLocation: IWeatherData = useSelector(
     selectSessionFavoriteLocation
   );
   const { current: favCurrent, location: favLocation } = favoriteLocation;
-
+  const favTemp = useTempUnits('current', favoriteLocation);
   return (
     <StyledDrawerContent>
       <Link to="/settings" className="settings">
@@ -46,7 +47,9 @@ export const DrawerContent = () => {
                 alt="weather icon"
                 className="saved-localizations__item__info__icon"
               />{' '}
-              <Typography className="saved-localizations__item__info__temp"></Typography>
+              <Typography className="saved-localizations__item__info__temp">
+                {}
+              </Typography>
             </Box>
           </Box>
         </li>{' '}

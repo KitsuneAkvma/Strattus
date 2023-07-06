@@ -18,9 +18,9 @@ export const LocationCard = () => {
 
   const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
 
-  const currentTemp = useTempUnits('current');
-  const maxTemp = useTempUnits('max');
-  const minTemp = useTempUnits('min');
+  const currentTemp = useTempUnits('current', currentWeather);
+  const maxTemp = useTempUnits('max', currentWeather);
+  const minTemp = useTempUnits('min', currentWeather);
 
   useEffect(() => {
     const cleanUp = () => {

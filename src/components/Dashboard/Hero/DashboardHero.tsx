@@ -40,7 +40,7 @@ export const DashboardHero = () => {
           aria-label="Current conditions"
         >
           <Typography variant="h2" component="p" sx={{ fontWeight: 700 }}>
-            {useTempUnits('current')}
+            {useTempUnits('current', currentWeather)}
           </Typography>
           <Typography variant="h6" component="p">
             {currentWeather.current.condition.text}
@@ -65,8 +65,9 @@ export const DashboardHero = () => {
         </span>
 
         <Typography variant="body2" component="p">
-          {useTempUnits('min')}/{useTempUnits('max')} Feels like{' '}
-          {useTempUnits('feelsLike')}
+          {useTempUnits('min', currentWeather)}/
+          {useTempUnits('max', currentWeather)} Feels like{' '}
+          {useTempUnits('feelsLike', currentWeather)}
         </Typography>
       </div>
       <AlertsCard /> <HourlyForecast />

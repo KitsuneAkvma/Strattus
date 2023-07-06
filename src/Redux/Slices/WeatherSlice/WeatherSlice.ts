@@ -3,7 +3,6 @@ import { TRootState } from '../../store';
 import { updateCurrentWeather } from './operations';
 
 import {
-  IWeatherAirQuality,
   IWeatherAlerts,
   IWeatherData,
   IWeatherForecast,
@@ -14,7 +13,6 @@ interface IInitialState {
   error: object | undefined;
   currentWeather: IWeatherData | undefined;
   forecast: IWeatherForecast[] | undefined;
-  airQuality: IWeatherAirQuality | undefined;
   alerts: IWeatherAlerts | undefined;
 }
 
@@ -23,7 +21,6 @@ const initialState: IInitialState = {
   error: undefined,
   currentWeather: undefined,
   forecast: undefined,
-  airQuality: undefined,
   alerts: undefined,
 };
 
