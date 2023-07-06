@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   selectSessionFavoriteLocation,
-  selectSessionLocations,
+  selectSessionSavedLocations,
 } from '../../../Redux/selectors';
 import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
@@ -19,7 +19,7 @@ export const DrawerContent = () => {
   const favoriteLocation: IWeatherData = useSelector(
     selectSessionFavoriteLocation
   );
-  const savedLocations: TSavedLocations = useSelector(selectSessionLocations);
+  const savedLocations: TSavedLocations = useSelector(selectSessionSavedLocations);
   const doesSavedLocationExist: boolean = savedLocations.length > 0;
   const { location: favLocation } = favoriteLocation;
   const favTemp = useTempUnits('current', favoriteLocation);

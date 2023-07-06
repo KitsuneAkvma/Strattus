@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../utility/Themes/variables';
+import { colors, lightTextColors } from '../../utility/Themes/variables';
 
 export const StyledLocationsPage = styled.section`
   position: relative;
@@ -55,5 +55,7 @@ export const StyledLocationsPage = styled.section`
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+
+    color: ${lightTextColors.text3};
   }
 `;

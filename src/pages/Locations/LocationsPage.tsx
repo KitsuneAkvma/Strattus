@@ -1,6 +1,6 @@
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import { Box, IconButton, Typography } from '@mui/material';
-import { Link, unstable_HistoryRouter, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledLocationsPage } from './LocationsPage.styled';
 
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -11,12 +11,18 @@ import { LocationCard } from '../../components/Locations/LocationCard/LocationCa
 import { colors, lightTextColors } from '../../utility/Themes/variables';
 import { updateIsEditModeOn } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
 import { useSelector } from 'react-redux';
-import { selectGlobalIsEditModeOpen } from '../../Redux/selectors';
+import {
+  selectGlobalIsEditModeOpen,
+  selectSessionFavoriteLocation,
+  selectSessionSavedLocations,
+} from '../../Redux/selectors';
 
 export const LocationsPage = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
-
+  const favoriteLocation = useSelector(selectSessionFavoriteLocation);
+  const savedLocations = useSelector(selectSessionSavedLocations);
+  const isSavedLocationsExists = savedLocations.length > 0;
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
 
   const handleOpenEditMode = () => {
@@ -61,7 +67,7 @@ export const LocationsPage = () => {
           >
             Favorite Location{' '}
           </Typography>
-          <LocationCard />
+          <LocationCard {...favoriteLocation} />
         </Box>{' '}
         <Box className="locations-list__item">
           <Typography
@@ -72,18 +78,20 @@ export const LocationsPage = () => {
             Saved Locations{' '}
           </Typography>{' '}
           <ul className="saved-locations-list">
-            <li className="saved-locations-list__item">
-              {' '}
-              <LocationCard />
-            </li>
-            <li className="saved-locations-list__item">
-              {' '}
-              <LocationCard />
-            </li>
-            <li className="saved-locations-list__item">
-              {' '}
-              <LocationCard />
-            </li>
+            {isSavedLocationsExists ? (
+              savedLocations.map(location => {
+                return (
+                  <li className="saved-locations-list__item">
+                    {' '}
+                    <LocationCard {...location} />
+                  </li>
+                );
+              })
+            ) : (
+              <Typography variant="caption" className="saved-locations-list">
+                No saved locations
+              </Typography>
+            )}
           </ul>
         </Box>
       </ul>{' '}

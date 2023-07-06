@@ -17,7 +17,7 @@ const selectSessionGeoLocation = (state: TRootState): IGeoLocationData =>
   state.session.geoLocation;
 const selectSessionSettings = (state: TRootState): ISessionSettings =>
   state.session.sessionSettings;
-const selectSessionLocations = (state: TRootState): TSavedLocations =>
+const selectSessionSavedLocations = (state: TRootState): TSavedLocations =>
   state.session.savedLocations;
 const selectSessionFavoriteLocation = (state: TRootState): IWeatherData =>
   state.session.favoriteLocation;
@@ -42,7 +42,7 @@ export {
   selectSessionFavoriteLocation,
   selectSessionFirstVisit,
   selectSessionGeoLocation,
-  selectSessionLocations,
+  selectSessionSavedLocations,
   selectSessionSearchResults,
   selectSessionSettings,
   selectWeatherAirQuality,

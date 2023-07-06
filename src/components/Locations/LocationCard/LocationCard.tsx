@@ -12,15 +12,13 @@ import {
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
 import { StyledLocationCard } from './LocationCard.styled';
 
-export const LocationCard = () => {
+export const LocationCard = (props: IWeatherData) => {
   const dispatch = useDispatch();
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
-
-  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
-
-  const currentTemp = useTempUnits('current', currentWeather);
-  const maxTemp = useTempUnits('max', currentWeather);
-  const minTemp = useTempUnits('min', currentWeather);
+  const { current, location } = props;
+  const currentTemp = useTempUnits('current', props);
+  const maxTemp = useTempUnits('max', props);
+  const minTemp = useTempUnits('min', props);
 
   useEffect(() => {
     const cleanUp = () => {
@@ -32,12 +30,12 @@ export const LocationCard = () => {
   return (
     <StyledLocationCard>
       <Box className="location__info">
-        <Typography variant="h6">{currentWeather.location.name}</Typography>{' '}
+        <Typography variant="h6">{location.name}</Typography>{' '}
         <Typography variant="caption" sx={{ color: '#c3c3c3dd' }}>
-          {currentWeather.location.region}{' '}
+          {location.region}{' '}
         </Typography>{' '}
         <Typography variant="caption" sx={{ color: '#c3c3c3dd' }}>
-          {currentWeather.location.localtime}
+          {location.localtime}
         </Typography>
       </Box>{' '}
       {isEditModeOpen ? (
@@ -48,7 +46,7 @@ export const LocationCard = () => {
         <Box className="location__weather">
           <Typography variant="h4">
             <img
-              src={currentWeather.current.condition.icon}
+              src={current.condition.icon}
               alt="weather icon"
               className="location__weather__img"
             />{' '}
