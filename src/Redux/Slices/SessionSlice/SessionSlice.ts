@@ -2,7 +2,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TRootState } from '../../store';
 import { updateGeoLocation } from './operations';
 
-import { IGeoLocationData, ISearchResult, ISessionSettings } from './types';
+import {
+  IGeoLocationData,
+  ISearchResult,
+  ISessionSettings,
+  TSavedLocations,
+} from './types';
 import { IWeatherData } from '../WeatherSlice/types';
 
 interface IInitialState {
@@ -11,7 +16,7 @@ interface IInitialState {
   error: Error | undefined;
   geoLocation: IGeoLocationData | undefined;
   sessionSettings: ISessionSettings;
-  savedLocations: string[];
+  savedLocations: TSavedLocations[];
   favoriteLocation: IWeatherData | undefined;
   searchResults: ISearchResult[];
 }

@@ -1,23 +1,25 @@
+import { IWeatherData } from '../WeatherSlice/types';
+
 export interface ILoginForm {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 export interface IRegisterForm {
-  username: string
-  email: string
-  password: string
-  confPassword: string
+  username: string;
+  email: string;
+  password: string;
+  confPassword: string;
 }
 export interface IUser {
-  username: string
-  email: string
-  locations: []
-  isVerified: boolean
+  username: string;
+  email: string;
+  locations: [];
+  isVerified: boolean;
 }
 export interface ISessionSettings {
-  tempUnit: 'C' | 'F'
-  speedUnit: "km/h"|'mph'
-  theme: 'default' | 'light' | 'dark'
+  tempUnit: 'C' | 'F';
+  speedUnit: 'km/h' | 'mph';
+  theme: 'default' | 'light' | 'dark';
 }
 export interface IGeoLocationData {
   query: string;
@@ -44,3 +46,4 @@ export interface ISearchResult {
   region: string;
   url: string;
 }
+export type TSavedLocations = IWeatherData[];

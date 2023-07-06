@@ -53,18 +53,33 @@ export const StyledDrawerContent = styled.aside`
   }
 
   .saved-localizations {
+    padding-left: 2rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: flex-start;
+    color: ${lightTextColors.text3};
   }
 
   .favorites__item,
   .saved-localizations__item {
+    width: 100%;
     padding-left: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     color: ${lightTextColors.text3};
+    &__name {
+      display: flex;
+      align-items: center;
+    }
+    &__info {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        width: 2rem;
+      }
+    }
   }
   .menage-link {
     margin: 1rem auto;
