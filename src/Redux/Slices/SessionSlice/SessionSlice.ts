@@ -1,42 +1,29 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { updateGeoLocation } from './operations';
 import { TRootState } from '../../store';
+import { updateGeoLocation } from './operations';
 
-import {
-  IGeoLocationData,
-  ILoginForm,
-  IRegisterForm,
-  ISearchResult,
-  ISessionSettings,
-  IUser,
-} from './types';
-import { IWeatherLocation } from '../WeatherSlice/types';
+import { IGeoLocationData, ISearchResult, ISessionSettings } from './types';
+import { IWeatherData } from '../WeatherSlice/types';
 
 interface IInitialState {
   isLoading: boolean;
+  firstVisit: boolean;
   error: Error | undefined;
-  loginForm: ILoginForm | undefined;
-  registerForm: IRegisterForm | undefined;
-  user: IUser | undefined;
-  isAuth: boolean;
-  token: string;
   geoLocation: IGeoLocationData | undefined;
   sessionSettings: ISessionSettings;
   savedLocations: string[];
+  favoriteLocation: IWeatherData | undefined;
   searchResults: ISearchResult[];
 }
 
 const initialState: IInitialState = {
   isLoading: false,
+  firstVisit: true,
   error: undefined,
-  loginForm: undefined,
-  registerForm: undefined,
-  user: undefined,
-  isAuth: false,
-  token: '',
   geoLocation: undefined,
   sessionSettings: { tempUnit: 'C', speedUnit: 'km/h', theme: 'default' },
   savedLocations: [],
+  favoriteLocation: undefined,
   searchResults: [],
 };
 const handlePending = (state: TRootState) => {
@@ -51,23 +38,8 @@ const SessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    updateLoginForm: (state, action) => {
-      state.loginForm = action.payload;
-    },
-    clearLoginForm: state => {
-      state.loginForm = initialState.loginForm;
-    },
-    updateRegisterForm: (state, action) => {
-      state.registerForm = action.payload;
-    },
-    clearRegisterForm: state => {
-      state.registerForm = initialState.registerForm;
-    },
-    updateIsAuth: (state, action) => {
-      state.isAuth = action.payload;
-    },
-    updateToken: (state, action) => {
-      state.token = action.payload;
+    updateFirstVisit: (state, action) => {
+      state.firstVisit = action.payload;
     },
     updateSettingsTempUnit: (state, action) => {
       state.sessionSettings.tempUnit = action.payload;
@@ -89,6 +61,9 @@ const SessionSlice = createSlice({
     updateSearchResults: (state, action) => {
       state.searchResults = action.payload;
     },
+    updateFavoriteLocation: (state, action) => {
+      state.favoriteLocation = action.payload;
+    },
   },
   extraReducers: (builder: any) => {
     builder
@@ -105,16 +80,14 @@ const SessionSlice = createSlice({
 });
 
 export const {
-  updateLoginForm,
-  clearLoginForm,
-  updateRegisterForm,
-  clearRegisterForm,
+  updateFirstVisit,
   updateSettingsTempUnit,
   updateSettingsSpeedUnit,
   updateTheme,
   addLocation,
   removeLocation,
   updateSearchResults,
+  updateFavoriteLocation,
 } = SessionSlice.actions;
 
 export const SessionReducer = SessionSlice.reducer;

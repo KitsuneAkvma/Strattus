@@ -18,7 +18,6 @@ export const useGetWeather = async (
 
   try {
     const res: AxiosResponse<IWeatherData> = await axios.get(fetchUrl);
-
     return res.data;
   } catch (err) {
     const message = String((err as Error).message);
@@ -32,7 +31,7 @@ export const useSearchLocations = async (
 
   try {
     const res: AxiosResponse<TSearchResult> = await axios.get(fetchUrl);
-  
+
     return res.data;
   } catch (err) {
     const message = String((err as Error).message);

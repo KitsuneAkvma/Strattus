@@ -6,8 +6,12 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import AddLocationRoundedIcon from '@mui/icons-material/AddLocationRounded';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectSessionFavoriteLocation } from '../../../Redux/selectors';
 
 export const DrawerContent = () => {
+  const favoriteLocation = useSelector(selectSessionFavoriteLocation);
+  console.log({ favoriteLocation });
   return (
     <StyledDrawerContent>
       <Link to="/settings" className="settings">
@@ -30,7 +34,9 @@ export const DrawerContent = () => {
             {' '}
             <span className="favorites__item__name">
               <PlaceIcon className="favorites__item__name__icon" />
-              <p className="favorites__item__name__text"></p>
+              <p className="favorites__item__name__text">
+                {favoriteLocation.name}
+              </p>
             </span>{' '}
             <Box className="saved-localizations__item__info">info</Box>
           </Box>
