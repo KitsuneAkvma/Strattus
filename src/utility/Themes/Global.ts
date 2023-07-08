@@ -12,6 +12,8 @@ export const GlobalStyles = createGlobalStyle`
   margin:0;
   font-family:'Roboto', sans-serif;
   list-style:none;
+  color:${lightTextColors.text1};
+
   &::-webkit-scrollbar {
 	width: 6px;
   height:6px;
@@ -31,6 +33,7 @@ export const GlobalStyles = createGlobalStyle`
   color: ${({ theme }: any) => theme.colors.color};
   font-size:16px;
   background-color: ${colors.bgDark};
+  overflow-x:hidden;
  };
 
  a {

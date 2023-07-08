@@ -3,7 +3,8 @@ import { cardBackground } from '../../../utility/Themes/mixins.styled';
 import { lightTextColors } from '../../../utility/Themes/variables';
 
 export const StyledDailyForecast = styled.ul`
-  width: 95vw;
+  width: 90%;
+  min-height: 9.5rem;
   padding: 1.2rem 1rem;
   margin: 0 auto;
 

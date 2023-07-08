@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { cardBackground } from '../../../utility/Themes/mixins.styled';
+import { lightTextColors } from '../../../utility/Themes/variables';
 
 export const StyledHourlyForecast = styled.div`
   width: 85vw;
@@ -39,5 +40,36 @@ export const StyledHourlyForecast = styled.div`
         font-weight: 700;
       }
     }
+  }
+
+  @media (min-width: 600px) {
+    .hourly__header {
+      &__text {
+        font-size: 1.6em;
+      }
+      &__text--temp {
+        font-size: 0.8em;
+        font-weight: 500;
+        color: ${lightTextColors.text3};
+      }
+    }
+    .hourly__forecast {
+      &__item {
+        width: 100%;
+        padding: 0.4rem;
+        font-size: 1.2em;
+        &__hour {
+        }
+        &__icon {
+          width: 3rem;
+        }
+        &__temp {
+        }
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+    width: 70%;
+    margin: 0;
   }
 `;

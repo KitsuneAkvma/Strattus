@@ -117,7 +117,7 @@ export const DrawerContent = () => {
               })}
             </ul>
           ) : (
-            <Typography variant="body2" className="saved-localizations">
+            <Typography variant="body2" className="saved-localizations--empty">
               No location saved
             </Typography>
           )}

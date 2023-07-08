@@ -35,10 +35,19 @@ export const DashboardHero = () => {
           className="hero__current__condition"
           aria-label="Current conditions"
         >
-          <Typography variant="h3" component="p" sx={{ fontWeight: 700 }}>
+          <Typography
+            variant="h3"
+            component="p"
+            sx={{ fontWeight: 700 }}
+            className="hero__current__condition__temp"
+          >
             {useTempUnits('current', weather)}
           </Typography>
-          <Typography variant="subtitle2" component="p">
+          <Typography
+            variant="subtitle2"
+            component="p"
+            className="hero__current__condition__text"
+          >
             {current.condition.text}
           </Typography>
         </div>

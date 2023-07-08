@@ -25,7 +25,10 @@ export const StyledDashboardHero = styled.section`
 
     &__image {
       width: 6rem;
-      height: 6rem;
+      aspect-ratio: 1/1;
+    }
+    &__condition__text {
+      font-weight: 300;
     }
   }
   .hero__location {
@@ -47,6 +50,37 @@ export const StyledDashboardHero = styled.section`
       width: 3rem;
       height: 3rem;
       fill: white;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .hero__current {
+      padding-inline: 5rem;
+
+      &__condition__temp {
+        font-size: 4em;
+      }
+      &__condition__text {
+        font-size: 2em;
+        font-weight: 300;
+      }
+
+      &__image {
+        width: 8rem;
+      }
+    }
+    .hero__location {
+      padding-inline: 5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    width: 50vw;
+    .hero__current {
+      justify-content: flex-start;
+      gap: 10rem;
+      &__image {
+        width: 10rem;
+      }
     }
   }
 `;

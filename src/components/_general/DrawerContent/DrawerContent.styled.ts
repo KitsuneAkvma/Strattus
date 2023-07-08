@@ -66,6 +66,11 @@ export const StyledDrawerContent = styled.aside`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    &--empty {
+      display: flex;
+      justify-content: center;
+      color: ${lightTextColors.text2};
+    }
   }
 
   .favorites__item,
@@ -102,5 +107,8 @@ export const StyledDrawerContent = styled.aside`
       backdrop-filter: brightness(110%);
       box-shadow: none;
     }
+  }
+  @media (min-width: 600px) {
+  
   }
 `;

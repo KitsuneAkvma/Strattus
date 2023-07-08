@@ -1,25 +1,23 @@
-import { Typography } from '@mui/material';
-import { StyledInfoTiles } from './InfoTiles.styled';
+import AirIcon from '@mui/icons-material/Air';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import AirIcon from '@mui/icons-material/Air';
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
-import {
-  IWeatherData,
-  IWeatherForecast,
-} from '../../../Redux/Slices/WeatherSlice/types';
+import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { ISessionSettings } from '../../../Redux/Slices/SessionSlice/types';
+import {
+  IWeatherData
+} from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectSessionSettings,
-  selectWeatherCurrentWeather,
-  selectWeatherForecast,
+  selectWeatherCurrentWeather
 } from '../../../Redux/selectors';
-import { ISessionSettings } from '../../../Redux/Slices/SessionSlice/types';
 import { useConverterTo24h } from '../../../utility/hooks/useConverter';
+import { StyledInfoTiles } from './InfoTiles.styled';
 
 export const InfoTiles = () => {
   const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
-  const forecast: IWeatherForecast[] = useSelector(selectWeatherForecast);
+  const forecast = currentWeather.forecast.forecastday;
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
 
   const humidity: number = currentWeather.current.humidity;

@@ -27,9 +27,17 @@ export const HourlyForecast = () => {
   return (
     <StyledHourlyForecast>
       <header className="hourly__header">
-        <Typography variant="subtitle2" component="h3">
-          {today.condition.text} {useTempUnits('min', currentWeather)}-
-          {useTempUnits('max', currentWeather)}{' '}
+        <Typography
+          variant="subtitle2"
+          component="h3"
+          className="hourly__header__text"
+        >
+          {today.condition.text}
+          {', '}
+          <span className="hourly__header__text--temp">
+            {useTempUnits('min', currentWeather)} -
+            {useTempUnits('max', currentWeather)}
+          </span>
         </Typography>
       </header>
       <ul className="hourly__forecast">
