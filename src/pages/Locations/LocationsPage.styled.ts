@@ -56,11 +56,16 @@ export const StyledLocationsPage = styled.section`
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-
+    padding-bottom: 3rem;
     color: ${lightTextColors.text3};
     &--empty {
       padding-top: 1rem;
       align-self: center;
     }
+  }
+  .location-card {
+    height: 6.4rem;
+    border-radius: 1rem;
+    background-color: ${lightTextColors.text5};
   }
 `;

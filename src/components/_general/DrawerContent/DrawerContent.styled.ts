@@ -42,14 +42,17 @@ export const StyledDrawerContent = styled.aside`
     border: 1px dashed ${colors.primaryLight};
   }
   .localizations__item__section-name {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     align-self: flex-start;
 
     color: ${lightTextColors.text2};
+    &--favorite {
+      color:${lightTextColors.text1};
+    }
     &__icon {
-      color: ${lightTextColors.text1};
+      color: ${lightTextColors.text2};
     }
     &__icon--favorite {
       color: ${colors.primary};
@@ -57,10 +60,9 @@ export const StyledDrawerContent = styled.aside`
   }
 
   .saved-localizations {
-    padding-left: 2rem;
     display: flex;
-    flex-direction: flex-start;
-    color: ${lightTextColors.text3};
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .favorites__item,

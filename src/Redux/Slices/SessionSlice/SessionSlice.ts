@@ -62,7 +62,7 @@ const SessionSlice = createSlice({
     },
     removeLocation: (state, action) => {
       state.savedLocationsUrls = state.savedLocationsUrls.filter(
-        item => item != action.payload
+        (_, index) => index != action.payload
       );
     },
     updateSearchQuery: (state, action) => {

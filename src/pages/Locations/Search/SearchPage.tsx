@@ -6,7 +6,7 @@ import {
   ListItemButton,
 } from '@mui/material';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledSearchPage } from './SearchPage.styled';
 
 import Typography from '@mui/material/Typography/Typography';
@@ -38,7 +38,7 @@ export const SearchPage = () => {
     return () => {
       dispatch(updateSearchQuery(''));
     };
-  }, [searchQuery]);
+  }, [dispatch, searchQuery]);
 
   const handleGoBack = () => {
     navigation(-1);

@@ -19,7 +19,6 @@ import {
   updateSettingsSpeedUnit,
   updateSettingsTempUnit,
 } from '../../Redux/Slices/SessionSlice/SessionSlice';
-import { ChangeEvent } from 'react';
 import { colors } from '../../utility/Themes/variables';
 
 const selectStyles = {
@@ -45,7 +44,7 @@ export const SettingsPage = () => {
   };
 
   const handleGoBack = () => {
-    navigation(-1);
+    navigation('/');
   };
   const navigation = useNavigate();
   return (

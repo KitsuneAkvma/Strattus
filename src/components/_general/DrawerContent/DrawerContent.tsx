@@ -1,19 +1,20 @@
-import { StyledDrawerContent } from './DrawerContent.styled';
 import PlaceIcon from '@mui/icons-material/Place';
 import { Box, Button, Typography } from '@mui/material';
+import { StyledDrawerContent } from './DrawerContent.styled';
 
+import AddLocationRoundedIcon from '@mui/icons-material/AddLocationRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
-import AddLocationRoundedIcon from '@mui/icons-material/AddLocationRounded';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { TSavedLocations } from '../../../Redux/Slices/SessionSlice/types';
+import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectSessionFavoriteLocation,
   selectWeatherSavedLocations,
 } from '../../../Redux/selectors';
-import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
-import { TSavedLocations } from '../../../Redux/Slices/SessionSlice/types';
+import { LocationItem } from './LocationItem/LocationItem';
 
 export const DrawerContent = () => {
   const favoriteLocation: IWeatherData = useSelector(
@@ -29,13 +30,11 @@ export const DrawerContent = () => {
   return (
     <StyledDrawerContent>
       <Link to="/settings" className="settings">
-        {' '}
         <SettingsRoundedIcon className="setting__icon" />
       </Link>
       <ul className="localizations">
         <li className="localizations__item">
-          <span className="localizations__item__section-name">
-            {' '}
+          <span className="localizations__item__section-name localizations__item__section-name--favorite ">
             <StarRoundedIcon className="localizations__item__section-name__icon localizations__item__section-name__icon--favorite" />
             <Typography
               variant="h5"
@@ -45,33 +44,33 @@ export const DrawerContent = () => {
             </Typography>
           </span>
           <Box className="favorites__item">
-            {' '}
             <span className="favorites__item__name">
               <PlaceIcon className="favorites__item__name__icon" />
-              <Typography variant="h6" className="favorites__item__name__text">
+              <Typography
+                variant="subtitle1"
+                className="favorites__item__name__text"
+              >
                 {favLocation.name}
               </Typography>
-            </span>{' '}
+            </span>
             <Box className="saved-localizations__item__info">
               <img
                 src={favoriteLocation.current.condition.icon}
                 alt="weather icon"
                 className="saved-localizations__item__info__icon"
-              />{' '}
+              />
               <Typography
-                variant="h6"
+                variant="subtitle1"
                 className="saved-localizations__item__info__temp"
               >
                 {favTemp}
               </Typography>
             </Box>
           </Box>
-        </li>{' '}
-        <div className="separator" />{' '}
+        </li>
+        <div className="separator" />
         <li className="localizations__item">
-          {' '}
           <span className="localizations__item__section-name">
-            {' '}
             <AddLocationRoundedIcon className="localizations__item__section-name__icon" />
             <Typography
               variant="h5"
@@ -82,21 +81,18 @@ export const DrawerContent = () => {
           </span>
           {doesSavedLocationExist ? (
             <ul className="saved-localizations">
-              <li className="saved-localizations__item">
-                <span className="saved-localizations__item__name">
-                  <Typography className="saved-localizations__item__name__text"></Typography>
-                </span>
-                <Box className="saved-localizations__item__info">info</Box>
-              </li>{' '}
+              {savedLocations.map((item, index) => {
+                return <LocationItem {...item} key={index} />;
+              })}
             </ul>
           ) : (
             <Typography variant="body2" className="saved-localizations">
               No location saved
             </Typography>
           )}
-        </li>{' '}
+        </li>
         <div className="separator" />
-      </ul>{' '}
+      </ul>
       <Link to="/locations" className="menage-link">
         <Button variant="contained" className="menage-link__button">
           Menage Locations

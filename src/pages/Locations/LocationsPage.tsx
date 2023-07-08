@@ -6,7 +6,11 @@ import { StyledLocationsPage } from './LocationsPage.styled';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import { LocationCard } from '../../components/Locations/LocationCard/LocationCard';
+import Skeleton from '@mui/material/Skeleton';
+import {
+  ILocationCardProps,
+  LocationCard,
+} from '../../components/Locations/LocationCard/LocationCard';
 import { colors, lightTextColors } from '../../utility/Themes/variables';
 import { updateIsEditModeOn } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
 import { useSelector } from 'react-redux';
@@ -14,6 +18,7 @@ import {
   selectGlobalIsEditModeOpen,
   selectSessionFavoriteLocation,
   selectSessionSavedLocationsUrls,
+  selectWeatherIsLoading,
   selectWeatherSavedLocations,
 } from '../../Redux/selectors';
 import { useEffect, useCallback } from 'react';
@@ -24,6 +29,7 @@ import { IWeatherData } from '../../Redux/Slices/WeatherSlice/types';
 export const LocationsPage = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigate();
+  const isLoading = useSelector(selectWeatherIsLoading);
   const favoriteLocation = useSelector(selectSessionFavoriteLocation);
   const savedLocations = useSelector(selectWeatherSavedLocations);
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
@@ -38,7 +44,6 @@ export const LocationsPage = () => {
   useEffect(() => {
     fetchSavedLocations(savedLocationsUrls);
   }, [dispatch, fetchSavedLocations, savedLocationsUrls]);
-
   const handleOpenEditMode = () => {
     dispatch(updateIsEditModeOn(true));
   };
@@ -49,9 +54,13 @@ export const LocationsPage = () => {
     navigation('/locations/search');
   };
   const handleGoBack = () => {
-    navigation(-1);
+    navigation('/settings');
   };
-
+  const favProps: ILocationCardProps = {
+    ...favoriteLocation,
+    index: 999,
+    type: 'favorite',
+  };
   return (
     <StyledLocationsPage>
       <Typography
@@ -73,17 +82,22 @@ export const LocationsPage = () => {
         />
       </IconButton>
       <ul className="locations-list">
-        <Box className="locations-list__item">
+        {' '}
+        <li className="locations-list__item">
           <Typography
             variant="body2"
             sx={{ color: colors.primaryLight }}
             className="locations-list__item__title"
           >
-            Favorite Location{' '}
+            Favorite Location
           </Typography>
-          <LocationCard {...favoriteLocation} />
-        </Box>{' '}
-        <Box className="locations-list__item">
+          {isLoading ? (
+            <Skeleton variant="rectangular" className="location-card" />
+          ) : (
+            <LocationCard {...favProps} />
+          )}
+        </li>
+        <li className="locations-list__item">
           <Typography
             variant="body2"
             sx={{ color: colors.primaryLight }}
@@ -92,12 +106,25 @@ export const LocationsPage = () => {
             Saved Locations{' '}
           </Typography>{' '}
           <ul className="saved-locations-list">
-            {isSavedLocationsExists ? (
+            {isLoading ? (
+              <>
+                {' '}
+                <Skeleton variant="rectangular" className="location-card" />
+                <Skeleton variant="rectangular" className="location-card" />
+                <Skeleton variant="rectangular" className="location-card" />
+                <Skeleton variant="rectangular" className="location-card" />
+              </>
+            ) : isSavedLocationsExists ? (
               savedLocations.map((location: IWeatherData, index: number) => {
+                const props: ILocationCardProps = {
+                  ...location,
+                  index,
+                  type: 'saved',
+                };
                 return (
                   <li className="saved-locations-list__item" key={index}>
                     {' '}
-                    <LocationCard {...location} />
+                    <LocationCard {...props} />
                   </li>
                 );
               })
@@ -110,7 +137,7 @@ export const LocationsPage = () => {
               </Typography>
             )}
           </ul>
-        </Box>
+        </li>
       </ul>{' '}
       {isEditModeOpen ? (
         <Box className="edit-buttons">
