@@ -1,43 +1,37 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { updateGeoLocation } from "./operations";
-import { TRootState } from "../../store";
-import { IGeoLocationData } from "../../../utility/hooks/useGetGeoLocation";
-interface ILoginForm {
-  email: string;
-  password: string;
-}
-interface IRegisterForm {
-  username: string;
-  email: string;
-  password: string;
-  confPassword: string;
-}
-interface IUser {
-  username: string;
-  email: string;
-  locations: [];
-  isVerified: boolean;
-}
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { TRootState } from '../../store';
+import { updateGeoLocation, updateSearchResults } from './operations';
+
+import {
+  IGeoLocationData,
+  ISearchResult,
+  ISessionSettings,
+  TSavedLocationsUrls,
+} from './types';
+import { IWeatherData } from '../WeatherSlice/types';
+
 interface IInitialState {
   isLoading: boolean;
+  firstVisit: boolean;
   error: Error | undefined;
-  loginForm: ILoginForm | undefined;
-  registerForm: IRegisterForm | undefined;
-  user: IUser | undefined;
-  isAuth: boolean;
-  token: string;
   geoLocation: IGeoLocationData | undefined;
+  sessionSettings: ISessionSettings;
+  searchQuery: string;
+  savedLocationsUrls: TSavedLocationsUrls;
+  favoriteLocation: IWeatherData | undefined;
+  searchResults: ISearchResult[];
 }
 
 const initialState: IInitialState = {
   isLoading: false,
+  firstVisit: true,
   error: undefined,
-  loginForm: undefined,
-  registerForm: undefined,
-  user: undefined,
-  isAuth: false,
-  token: "",
   geoLocation: undefined,
+  sessionSettings: { tempUnit: 'C', speedUnit: 'km/h', theme: 'default' },
+  searchQuery: '',
+  savedLocationsUrls: [],
+  favoriteLocation: undefined,
+  searchResults: [],
 };
 const handlePending = (state: TRootState) => {
   state.isLoading = true;
@@ -48,40 +42,69 @@ const handleRejected = (state: TRootState, action: PayloadAction<never>) => {
 };
 
 const SessionSlice = createSlice({
-  name: "session",
+  name: 'session',
   initialState,
   reducers: {
-    updateLoginForm: (state, action) => {
-      state.loginForm = action.payload;
+    updateFirstVisit: (state, action) => {
+      state.firstVisit = action.payload;
     },
-    clearLoginForm: (state) => {
-      state.loginForm = initialState.loginForm;
+    updateSettingsTempUnit: (state, action) => {
+      state.sessionSettings.tempUnit = action.payload;
     },
-    updateRegisterForm: (state, action) => {
-      state.registerForm = action.payload;
+    updateSettingsSpeedUnit: (state, action) => {
+      state.sessionSettings.speedUnit = action.payload;
     },
-    clearRegisterForm: (state) => {
-      state.registerForm = initialState.registerForm;
+    updateTheme: (state, action) => {
+      state.sessionSettings.theme = action.payload;
     },
-    updateIsAuth: (state, action) => {
-      state.isAuth = action.payload;
+    addLocation: (state, action) => {
+      state.savedLocationsUrls = [...state.savedLocationsUrls, action.payload];
     },
-    updateToken: (state, action) => {
-      state.token = action.payload;
+    removeLocation: (state, action) => {
+      state.savedLocationsUrls = state.savedLocationsUrls.filter(
+        (_, index) => index != action.payload
+      );
+    },
+    updateSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
+    updateFavoriteLocation: (state, action) => {
+      state.favoriteLocation = action.payload;
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   extraReducers: (builder: any) => {
     builder
       .addCase(updateGeoLocation.pending, handlePending)
+      .addCase(updateSearchResults.pending, handlePending)
       .addCase(updateGeoLocation.rejected, handleRejected)
+      .addCase(updateSearchResults.rejected, handleRejected)
       .addCase(
         updateGeoLocation.fulfilled,
         (state: IInitialState, action: PayloadAction<IGeoLocationData>) => {
           state.isLoading = false;
           state.geoLocation = action.payload;
         }
+      )
+      .addCase(
+        updateSearchResults.fulfilled,
+        (state: IInitialState, action: PayloadAction<ISearchResult[]>) => {
+          state.isLoading = false;
+          state.searchResults = action.payload;
+        }
       );
   },
 });
+
+export const {
+  updateFirstVisit,
+  updateSettingsTempUnit,
+  updateSettingsSpeedUnit,
+  updateTheme,
+  addLocation,
+  removeLocation,
+  updateSearchQuery,
+  updateFavoriteLocation,
+} = SessionSlice.actions;
 
 export const SessionReducer = SessionSlice.reducer;

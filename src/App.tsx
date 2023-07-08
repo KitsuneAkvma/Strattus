@@ -1,20 +1,41 @@
-import { useCallback, useEffect } from "react";
-import "./App.css";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { updateCurrentWeather } from "./Redux/Slices/WeatherSlice/operations";
 import {
+  updateFavoriteLocation,
+  updateFirstVisit,
+} from './Redux/Slices/SessionSlice/SessionSlice';
+import { updateGeoLocation } from './Redux/Slices/SessionSlice/operations';
+import {
+  updateCurrentWeather,
+  updateSavedLocations,
+} from './Redux/Slices/WeatherSlice/operations';
+import {
+  selectSessionFavoriteLocation,
+  selectSessionFirstVisit,
   selectSessionGeoLocation,
+  selectSessionSavedLocationsUrls,
   selectWeatherCurrentWeather,
-} from "./Redux/selectors";
-import { updateGeoLocation } from "./Redux/Slices/SessionSlice/operations";
+} from './Redux/selectors';
+import { Loader } from './components/_general/Loader/Loader';
+import { useAppDispatch } from './utility/hooks/hooks';
+import { LazyRouter } from './utility/lazyComponents';
 
 const App: React.FC = () => {
-  const dispatch = useDispatch<any>();
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dispatch = useAppDispatch();
+  const isFirstVisit = useSelector(selectSessionFirstVisit);
+  const favoriteLocation = useSelector(selectSessionFavoriteLocation); //DELATE
   const geoLocation = useSelector(selectSessionGeoLocation);
-  const city = geoLocation?.city?.name || "London";
-  const currentWeather = useSelector(selectWeatherCurrentWeather);
+  const city = geoLocation?.city || 'London';
+  const savedLocationsUrls = useSelector(selectSessionSavedLocationsUrls);
+
+  useEffect(() => {
+    fetchGeoLocation();
+    fetchWeather(city);
+    fetchSavedLocations(savedLocationsUrls);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const fetchGeoLocation = useCallback(() => {
     dispatch(updateGeoLocation());
@@ -25,32 +46,22 @@ const App: React.FC = () => {
     },
     [dispatch]
   );
-  useEffect(() => {
-    fetchGeoLocation();
-    fetchWeather(city);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [geoLocation]);
-
-  console.info({ city, currentWeather });
-
+  const fetchSavedLocations = useCallback(
+    (savedLocations: string[]) => {
+      dispatch(updateSavedLocations(savedLocations));
+    },
+    [dispatch]
+  );
+  const currentWeather = useSelector(selectWeatherCurrentWeather);
+  if (isFirstVisit || !favoriteLocation) {
+    dispatch(updateFirstVisit(false));
+    dispatch(updateFavoriteLocation(currentWeather));
+  }
   return (
-    <>
-      <section>
-        <h2>Location</h2>
-        <p>
-          <b>City: {city}</b>
-        </p>
-      </section>
-      {currentWeather && (
-        <section>
-          <h2>Current weather</h2>
-          <img src={currentWeather.condition.icon} alt="Condition icon" />
-          <h3>{currentWeather.condition.text}</h3>
-          <p>Temperature: {currentWeather.temp_c} C🌡️ </p>
-          <p>Feels like: {currentWeather.feelslike_c} C🌡️ </p>
-        </section>
-      )}
-    </>
+    <React.Suspense fallback={<Loader />}>
+      {' '}
+      <LazyRouter />
+    </React.Suspense>
   );
 };
 

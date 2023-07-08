@@ -1,12 +1,14 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useGetGeoLocation } from "../../../utility/hooks/useGetGeoLocation";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useGetGeoLocation } from '../../../utility/hooks/useGetGeoLocation';
+import { useSearchLocations } from '../../../utility/hooks/useGetWeather';
+import { ISearchResult } from './types';
 
 const updateGeoLocation = createAsyncThunk(
-  "session/updateGeoLocation",
+  'session/updateGeoLocation',
   async (_, thunkAPI) => {
     try {
       const location = await useGetGeoLocation();
-      console.info({ location });
+
       return location;
     } catch (err) {
       const message = String((err as Error).message);
@@ -14,5 +16,17 @@ const updateGeoLocation = createAsyncThunk(
     }
   }
 );
+const updateSearchResults = createAsyncThunk(
+  'session/updateSearchResults',
+  async (query: string, thunkAPI) => {
+    try {
+      const results = await useSearchLocations(query);
 
-export { updateGeoLocation };
+      return results;
+    } catch (err) {
+      const message = String((err as Error).message);
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export { updateGeoLocation, updateSearchResults };
