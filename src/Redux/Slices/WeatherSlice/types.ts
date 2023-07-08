@@ -55,7 +55,7 @@ export interface IWeatherForecast {
   hour: IWeatherHourlyForecast[];
 }
 export interface IWeatherAlerts {
-  alert: Array<IWeatherAlert>; // Replace 'any' with the actual type for alerts if available
+  alert: Array<IWeatherAlert>; 
 }
 export interface IWeatherAlert {
   headline: string;

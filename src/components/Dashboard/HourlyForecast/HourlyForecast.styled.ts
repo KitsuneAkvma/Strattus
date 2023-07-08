@@ -20,14 +20,23 @@ export const StyledHourlyForecast = styled.div`
     overflow-x: auto;
 
     &__item {
+      padding: 0.2rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-
+      align-items: baseline;
       gap: 1rem;
 
+      text-align: center;
+      &__hour {
+        width: 100%;
+        margin-bottom: -0.2rem;
+      }
       &__icon {
         width: 2rem;
+      }
+      &__temp {
+        margin-top: -0.8rem;
+        font-weight: 700;
       }
     }
   }

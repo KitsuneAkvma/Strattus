@@ -11,32 +11,23 @@ import {
   updateSavedLocations,
 } from './Redux/Slices/WeatherSlice/operations';
 import {
-  selectSessionFavoriteLocation,
   selectSessionFirstVisit,
   selectSessionGeoLocation,
   selectSessionSavedLocationsUrls,
   selectWeatherCurrentWeather,
+  selectWeatherSelectedLocation,
 } from './Redux/selectors';
 import { Loader } from './components/_general/Loader/Loader';
 import { useAppDispatch } from './utility/hooks/hooks';
 import { LazyRouter } from './utility/lazyComponents';
 
 const App: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useAppDispatch();
   const isFirstVisit = useSelector(selectSessionFirstVisit);
-  const favoriteLocation = useSelector(selectSessionFavoriteLocation); //DELATE
   const geoLocation = useSelector(selectSessionGeoLocation);
-  const city = geoLocation?.city || 'London';
+  const city = geoLocation?.city;
   const savedLocationsUrls = useSelector(selectSessionSavedLocationsUrls);
-
-  useEffect(() => {
-    fetchGeoLocation();
-    fetchWeather(city);
-    fetchSavedLocations(savedLocationsUrls);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const selectedLocation = useSelector(selectWeatherSelectedLocation);
   const fetchGeoLocation = useCallback(() => {
     dispatch(updateGeoLocation());
   }, [dispatch]);
@@ -53,13 +44,33 @@ const App: React.FC = () => {
     [dispatch]
   );
   const currentWeather = useSelector(selectWeatherCurrentWeather);
-  if (isFirstVisit || !favoriteLocation) {
-    dispatch(updateFirstVisit(false));
+
+  useEffect(() => {
+    fetchSavedLocations(savedLocationsUrls);
+    fetchGeoLocation();
+    if (!selectedLocation || selectedLocation.length === 0) {
+      fetchWeather(city);
+    } else {
+      fetchWeather(selectedLocation);
+    }
+    if (isFirstVisit) {
+      dispatch(updateFirstVisit(false));
+    }
     dispatch(updateFavoriteLocation(currentWeather));
-  }
+  }, [
+    city,
+    currentWeather,
+    dispatch,
+    fetchGeoLocation,
+    fetchSavedLocations,
+    fetchWeather,
+    isFirstVisit,
+    savedLocationsUrls,
+    selectedLocation,
+  ]);
+
   return (
     <React.Suspense fallback={<Loader />}>
-      {' '}
       <LazyRouter />
     </React.Suspense>
   );

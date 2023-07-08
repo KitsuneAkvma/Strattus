@@ -45,17 +45,20 @@ export const StyledDrawerContent = styled.aside`
     margin-bottom: 1.5rem;
     display: flex;
     gap: 0.5rem;
-    align-self: flex-start;
 
     color: ${lightTextColors.text2};
     &--favorite {
-      color:${lightTextColors.text1};
+      color: ${lightTextColors.text1};
     }
     &__icon {
       color: ${lightTextColors.text2};
     }
     &__icon--favorite {
       color: ${colors.primary};
+    }
+    &__info {
+      align-self: center;
+      justify-self: right;
     }
   }
 

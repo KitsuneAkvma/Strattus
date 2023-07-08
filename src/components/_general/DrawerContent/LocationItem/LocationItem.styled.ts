@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import { lightTextColors } from '../../../../utility/Themes/variables';
 
 export const StyledLocationDrawerItem = styled.li`
-  width: 100%;
-  padding-left: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .location__item {
+    width: 100%;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  font-weight: 200;
+    font-weight: 200;
+    }
   .location__item__name {
     display: flex;
     align-items: center;

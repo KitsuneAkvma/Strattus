@@ -7,7 +7,7 @@ export const StyledDashboardHero = styled.section`
   width: 100vw;
   height: 100vh;
 
-  padding: 2rem 1rem;
+  padding: 3.3rem 1rem 0 1rem;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -40,10 +40,12 @@ export const StyledDashboardHero = styled.section`
     top: 1rem;
     left: 1rem;
 
-    width: 0.625rem;
-    height: 0.625rem;
+    width: 3rem;
+    height: 3rem;
 
     &__icon {
+      width: 3rem;
+      height: 3rem;
       fill: white;
     }
   }

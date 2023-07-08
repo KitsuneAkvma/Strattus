@@ -35,9 +35,6 @@ export const SearchPage = () => {
   const searchResultsExists = searchResults?.length > 0;
   useEffect(() => {
     dispatch(updateSearchResults(searchQuery));
-    return () => {
-      dispatch(updateSearchQuery(''));
-    };
   }, [dispatch, searchQuery]);
 
   const handleGoBack = () => {
@@ -57,6 +54,7 @@ export const SearchPage = () => {
   const handleAdding = (e: React.MouseEvent<HTMLLIElement>) => {
     const itemUrl = e.currentTarget.dataset['url'];
     dispatch(addLocation(itemUrl));
+    dispatch(updateSearchQuery(''));
     navigation('/locations');
   };
   return (
