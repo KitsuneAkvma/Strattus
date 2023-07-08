@@ -2,7 +2,7 @@
 
 <img src="public/svg/logo.svg" alt="app-icon" width="100" height="100">
 
-Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also incorporates the [ip-api](https://ip-api.com) to handle geolocation and fetch weather data based on the user's location.
+Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also incorporates the [ip-api](https://ip-api.com) to handle geolocation and fetch weather data based on the user's location. It's *highly* inspired by samsung's weather app.
 
 ## Key Features
 
@@ -12,7 +12,7 @@ Strattus is a weather web application designed to provide users with comprehensi
 - **Air Quality**: Stay informed about the air quality index, pollution levels, and driving/jogging conditions for a healthier outdoor experience.
 - **Location Search**: Search for specific locations and save them for easy access. The saved locations can be managed (added, edited, or deleted) in the dedicated menu.
 - **Favorites**: Mark a location as a favorite, and it will be displayed in the drawer on the left side of the screen for quick reference.
-- **Dashboard**: View detailed information for saved locations, including current weather, temperature variations, and additional data. (Work in Progress)
+- **Dashboard**: View detailed information for saved locations, including current weather, temperature variations, and additional data.
 - **Appearance**: The app's appearance adapts to the time of day, providing a visually pleasing experience.
 - **Mobile and Desktop Support**: In the future, the app will be developed using React Native for mobile devices and Electron for desktop applications.
 
