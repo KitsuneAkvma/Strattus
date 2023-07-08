@@ -45,11 +45,10 @@ export const StyledDrawerContent = styled.aside`
     margin-bottom: 1.5rem;
     display: flex;
     gap: 0.5rem;
-    align-self: flex-start;
 
     color: ${lightTextColors.text2};
     &--favorite {
-      color:${lightTextColors.text1};
+      color: ${lightTextColors.text1};
     }
     &__icon {
       color: ${lightTextColors.text2};
@@ -57,12 +56,21 @@ export const StyledDrawerContent = styled.aside`
     &__icon--favorite {
       color: ${colors.primary};
     }
+    &__info {
+      align-self: center;
+      justify-self: right;
+    }
   }
 
   .saved-localizations {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    &--empty {
+      display: flex;
+      justify-content: center;
+      color: ${lightTextColors.text2};
+    }
   }
 
   .favorites__item,
@@ -99,5 +107,8 @@ export const StyledDrawerContent = styled.aside`
       backdrop-filter: brightness(110%);
       box-shadow: none;
     }
+  }
+  @media (min-width: 600px) {
+  
   }
 `;

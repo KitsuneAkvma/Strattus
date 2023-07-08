@@ -11,9 +11,15 @@ import { updateIsSideBarOpen } from '../../Redux/Slices/GlobalSlice/GlobalSlice'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { lightTextColors } from '../../utility/Themes/variables';
+const drawerWidth =
+  window.innerWidth >= 1024
+    ? '30vw'
+    : window.innerWidth < 600
+    ? '90vw'
+    : '60vw';
 
 const drawerCustomStyles = {
-  width: '90vw',
+  width: drawerWidth,
   background: 'rgba(102, 109, 135, 0.6);',
   borderRadius: '0 16px 16px 0 ',
   color: lightTextColors.text1,
@@ -51,15 +57,16 @@ export const DashboardPage = () => {
       </SwipeableDrawer>
       <DashboardHero />
       <Box className="secondary-info">
-        {' '}
-        <DailyForecast />
-        <InfoTiles />
-        <ExtraInfo />
-        <Box className="signature">
-          Made with 🔥 by{' '}
-          <a href="https://github.com/KitsuneAkvma" target="_blank">
-            Mateusz Martin
-          </a>
+        <Box className="secondary-info__content">
+          <DailyForecast />
+          <InfoTiles />
+          <ExtraInfo />
+          <Box className="signature">
+            Made with 🔥 by{' '}
+            <a href="https://github.com/KitsuneAkvma" target="_blank">
+              Mateusz Martin
+            </a>
+          </Box>
         </Box>
       </Box>
     </StyledDashboard>

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { cardBackground } from '../../../utility/Themes/mixins.styled';
+import { lightTextColors } from '../../../utility/Themes/variables';
 
 export const StyledDailyForecast = styled.ul`
-  width: 95vw;
+  width: 90%;
+  min-height: 9.5rem;
   padding: 1.2rem 1rem;
   margin: 0 auto;
 
@@ -16,7 +18,6 @@ export const StyledDailyForecast = styled.ul`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
   }
   .daily__forecast__item__day {
     width: 30%;
@@ -24,6 +25,8 @@ export const StyledDailyForecast = styled.ul`
 
   .daily__forecast__item__rain {
     display: flex;
+    gap: 0.2rem;
+    color: ${lightTextColors.text3};
     &__icon {
       width: 1rem;
     }
@@ -32,7 +35,9 @@ export const StyledDailyForecast = styled.ul`
     width: 2rem;
   }
 
-  .daily__forecast__item__temp {
+  .daily__forecast__item__condition {
     display: flex;
+    align-items: center;
+    color: ${lightTextColors.text3};
   }
 `;

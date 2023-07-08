@@ -8,6 +8,8 @@ import App from './App.tsx';
 import { TimeThemeProvider } from './utility/Themes/TimeThemeProvider.tsx';
 import { GlobalStyles } from './utility/Themes/Global.ts';
 
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={Store}>
     <PersistGate persistor={persistor}>

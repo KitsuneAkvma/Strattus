@@ -2,14 +2,18 @@ import styled from 'styled-components';
 import { cardBackground } from '../../../utility/Themes/mixins.styled';
 
 export const StyledInfoTiles = styled.section`
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 45vw 45vw;
-  gap: 0.8rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 
   .infoTile {
     padding: 2rem;
-    width: 45vw;
+    width: 13rem;
+
     aspect-ratio: 1/1;
     display: flex;
     flex-direction: column;
@@ -53,6 +57,49 @@ export const StyledInfoTiles = styled.section`
     }
     .infoTile__sunSet {
       grid-column: 3;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .infoTile {
+      width: 18.8rem;
+      &__icon {
+        width: 6rem;
+        height: 6rem;
+      }
+      &__header,
+      &__type__header {
+        font-size: 1em;
+      }
+      &__value {
+        font-size: 1em;
+      }
+    }
+    .infoTile--sunPos {
+      font-size: 1em;
+      .infoTile__icon {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: stretch;
+    .infoTile {
+      width: 10rem;
+
+      &__icon {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    .infoTile--sunPos {
+      font-size: 0.8em;
+      .infoTile__icon {
+        width: 3rem;
+        height: 3rem;
+      }
     }
   }
 `;

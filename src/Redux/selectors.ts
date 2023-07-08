@@ -43,6 +43,8 @@ const selectWeatherAlerts = (state: TRootState): IWeatherAlerts =>
   state.weather.alerts.alert;
 const selectWeatherSavedLocations = (state: TRootState): TSavedLocations =>
   state.weather.savedLocations;
+const selectWeatherSelectedLocation = (state: TRootState): string =>
+  state.weather.savedLocation;
 
 const selectGlobalIsSideBarOpen = (state: TRootState): boolean =>
   state.global.isSideBarOpen;
@@ -64,6 +66,7 @@ export {
   selectWeatherCurrentWeather,
   selectWeatherForecast,
   selectWeatherSavedLocations,
+  selectWeatherSelectedLocation,
 };
 
 export { selectGlobalIsEditModeOpen, selectGlobalIsSideBarOpen };

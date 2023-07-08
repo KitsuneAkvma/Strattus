@@ -43,7 +43,7 @@ export const LocationCard = (props: ILocationCardProps) => {
           {location.name}
         </Typography>
         <Typography variant="caption" sx={{ color: lightTextColors.text2 }}>
-          {`${shortRegion}, ${location.country}`}
+          {shortRegion?`${shortRegion}, ${location.country}`:location.country}
         </Typography>
         <Typography variant="caption" sx={{ color: lightTextColors.text3 }}>
           {location.localtime}

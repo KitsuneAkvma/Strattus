@@ -1,12 +1,8 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { IGeoLocationData } from '../../../Redux/Slices/SessionSlice/types';
 import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
-import {
-  selectSessionGeoLocation,
-  selectWeatherCurrentWeather,
-} from '../../../Redux/selectors';
+import { selectWeatherCurrentWeather } from '../../../Redux/selectors';
 
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useDispatch } from 'react-redux';
@@ -18,9 +14,9 @@ import { StyledDashboardHero } from './DashboardHero.styled';
 
 export const DashboardHero = () => {
   const dispatch = useDispatch();
-  const geoLocation: IGeoLocationData = useSelector(selectSessionGeoLocation);
-  const city = geoLocation?.city || 'London';
-  const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
+  const weather: IWeatherData = useSelector(selectWeatherCurrentWeather);
+  const { current, location } = weather;
+  const city = location.name;
 
   const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true));
   return (
@@ -39,17 +35,23 @@ export const DashboardHero = () => {
           className="hero__current__condition"
           aria-label="Current conditions"
         >
-          <Typography variant="h2" component="p" sx={{ fontWeight: 700 }}>
-            {useTempUnits('current', currentWeather)}
+          <Typography
+            variant="h3"
+            component="p"
+            sx={{ fontWeight: 700 }}
+            className="hero__current__condition__temp"
+          >
+            {useTempUnits('current', weather)}
           </Typography>
-          <Typography variant="h6" component="p">
-            {currentWeather.current.condition.text}
+          <Typography
+            variant="subtitle2"
+            component="p"
+            className="hero__current__condition__text"
+          >
+            {current.condition.text}
           </Typography>
         </div>
-        <img
-          className="hero__current__image"
-          src={currentWeather.current.condition.icon}
-        />
+        <img className="hero__current__image" src={current.condition.icon} />
       </div>
       <div className="hero__location">
         <span className="hero__location__name">
@@ -65,9 +67,8 @@ export const DashboardHero = () => {
         </span>
 
         <Typography variant="body2" component="p">
-          {useTempUnits('min', currentWeather)}/
-          {useTempUnits('max', currentWeather)} Feels like{' '}
-          {useTempUnits('feelsLike', currentWeather)}
+          {useTempUnits('min', weather)}/{useTempUnits('max', weather)} Feels
+          like {useTempUnits('feelsLike', weather)}
         </Typography>
       </div>
       <AlertsCard /> <HourlyForecast />

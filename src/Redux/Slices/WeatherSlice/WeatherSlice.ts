@@ -16,6 +16,7 @@ interface IInitialState {
   forecast: IWeatherForecast[] | undefined;
   alerts: IWeatherAlerts | undefined;
   savedLocations: TSavedLocations;
+  selectedLocation: string;
 }
 
 const initialState: IInitialState = {
@@ -25,6 +26,7 @@ const initialState: IInitialState = {
   forecast: undefined,
   alerts: undefined,
   savedLocations: [],
+  selectedLocation: '',
 };
 
 const handlePending = (state: TRootState) => {
@@ -38,7 +40,11 @@ const handleRejected = (state: TRootState, action: PayloadAction) => {
 const WeatherSlice: Slice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {},
+  reducers: {
+    updateSelectedLocation: (state, action) => {
+      state.savedLocation = action.payload;
+    },
+  },
   extraReducers: (builder: TRootState) => {
     builder
       .addCase(updateCurrentWeather.pending, handlePending)
@@ -63,5 +69,5 @@ const WeatherSlice: Slice = createSlice({
       );
   },
 });
-
+export const { updateSelectedLocation } = WeatherSlice.actions;
 export const WeatherReducer = WeatherSlice.reducer;

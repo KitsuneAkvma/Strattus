@@ -1,5 +1,12 @@
 import PlaceIcon from '@mui/icons-material/Place';
-import { Box, Button, Typography } from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import {
+  Box,
+  Button,
+  Typography,
+  ListItemButton,
+  Tooltip,
+} from '@mui/material';
 import { StyledDrawerContent } from './DrawerContent.styled';
 
 import AddLocationRoundedIcon from '@mui/icons-material/AddLocationRounded';
@@ -15,8 +22,12 @@ import {
 } from '../../../Redux/selectors';
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
 import { LocationItem } from './LocationItem/LocationItem';
+import { updateSelectedLocation } from '../../../Redux/Slices/WeatherSlice/WeatherSlice';
+import { useAppDispatch } from '../../../utility/hooks/hooks';
+import { updateIsSideBarOpen } from '../../../Redux/Slices/GlobalSlice/GlobalSlice';
 
 export const DrawerContent = () => {
+  const dispatch = useAppDispatch();
   const favoriteLocation: IWeatherData = useSelector(
     selectSessionFavoriteLocation
   );
@@ -27,6 +38,13 @@ export const DrawerContent = () => {
   const { location: favLocation } = favoriteLocation;
   const favTemp = useTempUnits('current', favoriteLocation);
 
+  const handleFavoriteClick = () => {
+    const locationLatLon = `${String(favLocation.lat)} ${String(
+      favLocation.lon
+    )}`;
+    dispatch(updateSelectedLocation(locationLatLon));
+    dispatch(updateIsSideBarOpen(false));
+  };
   return (
     <StyledDrawerContent>
       <Link to="/settings" className="settings">
@@ -42,31 +60,43 @@ export const DrawerContent = () => {
             >
               Favorite location
             </Typography>
-          </span>
-          <Box className="favorites__item">
-            <span className="favorites__item__name">
-              <PlaceIcon className="favorites__item__name__icon" />
-              <Typography
-                variant="subtitle1"
-                className="favorites__item__name__text"
+            <Tooltip title="Favorite location is your actual real location. You can find it always in here !">
+              <InfoOutlinedIcon className="localizations__item__section-name__info" />
+            </Tooltip>
+          </span>{' '}
+          {favoriteLocation && (
+            <Box>
+              {' '}
+              <ListItemButton
+                sx={{ borderRadius: '20px' }}
+                className="favorites__item"
+                onClick={handleFavoriteClick}
               >
-                {favLocation.name}
-              </Typography>
-            </span>
-            <Box className="saved-localizations__item__info">
-              <img
-                src={favoriteLocation.current.condition.icon}
-                alt="weather icon"
-                className="saved-localizations__item__info__icon"
-              />
-              <Typography
-                variant="subtitle1"
-                className="saved-localizations__item__info__temp"
-              >
-                {favTemp}
-              </Typography>
+                <span className="favorites__item__name">
+                  <PlaceIcon className="favorites__item__name__icon" />
+                  <Typography
+                    variant="subtitle1"
+                    className="favorites__item__name__text"
+                  >
+                    {favLocation.name}
+                  </Typography>
+                </span>
+                <Box className="saved-localizations__item__info">
+                  <img
+                    src={favoriteLocation.current.condition.icon}
+                    alt="weather icon"
+                    className="saved-localizations__item__info__icon"
+                  />
+                  <Typography
+                    variant="subtitle1"
+                    className="saved-localizations__item__info__temp"
+                  >
+                    {favTemp}
+                  </Typography>
+                </Box>{' '}
+              </ListItemButton>
             </Box>
-          </Box>
+          )}
         </li>
         <div className="separator" />
         <li className="localizations__item">
@@ -82,11 +112,12 @@ export const DrawerContent = () => {
           {doesSavedLocationExist ? (
             <ul className="saved-localizations">
               {savedLocations.map((item, index) => {
-                return <LocationItem {...item} key={index} />;
+                const props = { ...item, index };
+                return <LocationItem {...props} key={index} />;
               })}
             </ul>
           ) : (
-            <Typography variant="body2" className="saved-localizations">
+            <Typography variant="body2" className="saved-localizations--empty">
               No location saved
             </Typography>
           )}

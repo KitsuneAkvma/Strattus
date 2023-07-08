@@ -1,3 +1,5 @@
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ISessionSettings } from '../../../Redux/Slices/SessionSlice/types';
 import {
@@ -6,14 +8,13 @@ import {
 } from '../../../Redux/Slices/WeatherSlice/types';
 import {
   selectSessionSettings,
-  selectWeatherForecast,
+  selectWeatherCurrentWeather,
 } from '../../../Redux/selectors';
 import { StyledDailyForecast } from './DailyForecast.styled';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
-import { Typography } from '@mui/material';
 
 export const DailyForecast = () => {
-  const forecast: IWeatherForecast[] = useSelector(selectWeatherForecast);
+  const weather = useSelector(selectWeatherCurrentWeather);
+  const forecast = weather.forecast.forecastday;
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
   const weekDayMap: Map<number, string> = new Map([
     [0, 'Monday'],
@@ -65,25 +66,19 @@ export const DailyForecast = () => {
                 {rainChance}%
               </Typography>
             </span>
-            <img
-              src={icon}
-              alt="condition icon"
-              className="daily__forecast__item__icon"
-            />
-            <span className="daily__forecast__item__temp">
+
+            <span className="daily__forecast__item__condition">
+              <img
+                src={icon}
+                alt="condition icon"
+                className="daily__forecast__item__icon"
+              />
               <Typography
-                variant="body1"
+                variant="caption"
                 component="p"
-                className="daily__forecast__item__temp__max"
+                className="daily__forecast__item__temp__max-min"
               >
-                {maxTemp}
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                className="daily__forecast__item__temp__min"
-              >
-                {minTemp}
+                {maxTemp} / {minTemp}
               </Typography>
             </span>
           </li>
