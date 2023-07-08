@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TRootState } from '../../store';
-import { updateGeoLocation } from './operations';
+import { updateGeoLocation, updateSearchResults } from './operations';
 
 import {
   IGeoLocationData,
   ISearchResult,
   ISessionSettings,
-  TSavedLocations,
+  TSavedLocationsUrls,
 } from './types';
 import { IWeatherData } from '../WeatherSlice/types';
 
@@ -16,7 +16,8 @@ interface IInitialState {
   error: Error | undefined;
   geoLocation: IGeoLocationData | undefined;
   sessionSettings: ISessionSettings;
-  savedLocations: TSavedLocations[];
+  searchQuery: string;
+  savedLocationsUrls: TSavedLocationsUrls;
   favoriteLocation: IWeatherData | undefined;
   searchResults: ISearchResult[];
 }
@@ -27,7 +28,8 @@ const initialState: IInitialState = {
   error: undefined,
   geoLocation: undefined,
   sessionSettings: { tempUnit: 'C', speedUnit: 'km/h', theme: 'default' },
-  savedLocations: [],
+  searchQuery: '',
+  savedLocationsUrls: [],
   favoriteLocation: undefined,
   searchResults: [],
 };
@@ -56,29 +58,39 @@ const SessionSlice = createSlice({
       state.sessionSettings.theme = action.payload;
     },
     addLocation: (state, action) => {
-      state.savedLocations = [...state.savedLocations, action.payload];
+      state.savedLocationsUrls = [...state.savedLocationsUrls, action.payload];
     },
     removeLocation: (state, action) => {
-      state.savedLocations = state.savedLocations.filter(
+      state.savedLocationsUrls = state.savedLocationsUrls.filter(
         item => item != action.payload
       );
     },
-    updateSearchResults: (state, action) => {
-      state.searchResults = action.payload;
+    updateSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
     },
     updateFavoriteLocation: (state, action) => {
       state.favoriteLocation = action.payload;
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   extraReducers: (builder: any) => {
     builder
       .addCase(updateGeoLocation.pending, handlePending)
+      .addCase(updateSearchResults.pending, handlePending)
       .addCase(updateGeoLocation.rejected, handleRejected)
+      .addCase(updateSearchResults.rejected, handleRejected)
       .addCase(
         updateGeoLocation.fulfilled,
         (state: IInitialState, action: PayloadAction<IGeoLocationData>) => {
           state.isLoading = false;
           state.geoLocation = action.payload;
+        }
+      )
+      .addCase(
+        updateSearchResults.fulfilled,
+        (state: IInitialState, action: PayloadAction<ISearchResult[]>) => {
+          state.isLoading = false;
+          state.searchResults = action.payload;
         }
       );
   },
@@ -91,7 +103,7 @@ export const {
   updateTheme,
   addLocation,
   removeLocation,
-  updateSearchResults,
+  updateSearchQuery,
   updateFavoriteLocation,
 } = SessionSlice.actions;
 

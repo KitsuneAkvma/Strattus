@@ -10,7 +10,6 @@ import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 ('../../../Redux/Slices/WeatherSlice/types');
 export const ExtraInfo = () => {
   const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
-  console.log({ currentWeather });
   const airQualityIndex = currentWeather.current.air_quality['gb-defra-index'];
 
   const determineAirQuality: (index: number) => string = index => {

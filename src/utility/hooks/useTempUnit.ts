@@ -7,7 +7,6 @@ type TTempType = 'current' | 'feelsLike' | 'min' | 'max' | 'avg';
 export const useTempUnits = (type: TTempType, weather: IWeatherData) => {
   const { current, forecast } = weather;
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
-  console.log({ forecast });
   if (!forecast || !current) return '--';
   switch (type) {
     case 'current':

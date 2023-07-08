@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   selectSessionFavoriteLocation,
-  selectSessionSavedLocations,
+  selectWeatherSavedLocations,
 } from '../../../Redux/selectors';
 import { IWeatherData } from '../../../Redux/Slices/WeatherSlice/types';
 import { useTempUnits } from '../../../utility/hooks/useTempUnit';
@@ -19,8 +19,10 @@ export const DrawerContent = () => {
   const favoriteLocation: IWeatherData = useSelector(
     selectSessionFavoriteLocation
   );
-  const savedLocations: TSavedLocations = useSelector(selectSessionSavedLocations);
-  const doesSavedLocationExist: boolean = savedLocations.length > 0;
+  const savedLocations: TSavedLocations = useSelector(
+    selectWeatherSavedLocations
+  );
+  const doesSavedLocationExist: boolean = savedLocations?.length > 0;
   const { location: favLocation } = favoriteLocation;
   const favTemp = useTempUnits('current', favoriteLocation);
 
@@ -34,7 +36,7 @@ export const DrawerContent = () => {
         <li className="localizations__item">
           <span className="localizations__item__section-name">
             {' '}
-            <StarRoundedIcon className="localizations__item__section-name__icon" />
+            <StarRoundedIcon className="localizations__item__section-name__icon localizations__item__section-name__icon--favorite" />
             <Typography
               variant="h5"
               className="localizations__item__section-name__text"
@@ -46,7 +48,7 @@ export const DrawerContent = () => {
             {' '}
             <span className="favorites__item__name">
               <PlaceIcon className="favorites__item__name__icon" />
-              <Typography className="favorites__item__name__text">
+              <Typography variant="h6" className="favorites__item__name__text">
                 {favLocation.name}
               </Typography>
             </span>{' '}
@@ -56,7 +58,10 @@ export const DrawerContent = () => {
                 alt="weather icon"
                 className="saved-localizations__item__info__icon"
               />{' '}
-              <Typography className="saved-localizations__item__info__temp">
+              <Typography
+                variant="h6"
+                className="saved-localizations__item__info__temp"
+              >
                 {favTemp}
               </Typography>
             </Box>
@@ -79,8 +84,7 @@ export const DrawerContent = () => {
             <ul className="saved-localizations">
               <li className="saved-localizations__item">
                 <span className="saved-localizations__item__name">
-                  <PlaceIcon className="saved-localizations__item__name__icon" />
-                  <p className="saved-localizations__item__name__text"></p>
+                  <Typography className="saved-localizations__item__name__text"></Typography>
                 </span>
                 <Box className="saved-localizations__item__info">info</Box>
               </li>{' '}

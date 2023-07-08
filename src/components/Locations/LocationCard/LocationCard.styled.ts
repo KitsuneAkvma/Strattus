@@ -2,12 +2,15 @@ import styled from 'styled-components';
 
 export const StyledLocationCard = styled.div`
   z-index: 0;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+
   backdrop-filter: brightness(150%);
-  border-radius: 20px;
+  border-radius: 30px;
   .location__info {
     margin-block: 0.35rem;
     display: flex;
@@ -20,7 +23,7 @@ export const StyledLocationCard = styled.div`
     align-items: flex-end;
 
     &__img {
-      width: 40px;
+      width: 2.5rem;
       aspect-ratio: 1/1;
       text-align: center;
     }

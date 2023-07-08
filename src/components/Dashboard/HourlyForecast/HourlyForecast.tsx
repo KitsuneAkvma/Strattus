@@ -16,7 +16,6 @@ export const HourlyForecast = () => {
   const currentWeather: IWeatherData = useSelector(selectWeatherCurrentWeather);
   const { forecast } = currentWeather;
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
-  console.log({ forecast });
   const today = forecast.forecastday[0].day;
   const hourlyToday = forecast.forecastday[0].hour;
   const determineHourlyTemp = (hour: IWeatherHourlyForecast) => {

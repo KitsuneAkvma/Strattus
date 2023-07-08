@@ -31,6 +31,7 @@ export const StyledDrawerContent = styled.aside`
     align-items: center;
     gap: 1.5rem;
     &__item {
+      width: 100%;
       align-self: flex-start;
     }
   }
@@ -50,6 +51,9 @@ export const StyledDrawerContent = styled.aside`
     &__icon {
       color: ${lightTextColors.text1};
     }
+    &__icon--favorite {
+      color: ${colors.primary};
+    }
   }
 
   .saved-localizations {
@@ -66,8 +70,6 @@ export const StyledDrawerContent = styled.aside`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    color: ${lightTextColors.text3};
     &__name {
       display: flex;
       align-items: center;
@@ -77,9 +79,13 @@ export const StyledDrawerContent = styled.aside`
       align-items: center;
 
       &__icon {
-        width: 2rem;
+        width: 2.5rem;
       }
     }
+  }
+
+  .favorites__item {
+    color: ${lightTextColors.text1};
   }
   .menage-link {
     margin: 1rem auto;

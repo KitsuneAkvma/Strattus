@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { colors } from '../../../utility/Themes/variables';
+import { colors, lightTextColors } from '../../../utility/Themes/variables';
 
 export const StyledSearchPage = styled.section`
   position: relative;
-  width: 80vw;
+  width: 90vw;
   padding-top: 2rem;
   margin: 0 auto;
   display: flex;
@@ -22,38 +22,76 @@ export const StyledSearchPage = styled.section`
     top: 1.2rem;
     left: 0;
   }
-  .edit-buttons {
-    position: fixed;
-    bottom: 1.8rem;
-    right: 2rem;
-    z-index: 2;
 
-    display: flex;
-    gap: 2rem;
-  }
-  .button--add,
-  .button--edit,
-  .button--close-edit {
-    background-color: ${colors.primary};
-
-    &:hover {
-      background-color: ${colors.primaryHover};
-    }
-  }
-
-  .locations-list {
+  .results {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
 
-    &__item__title {
-      margin-bottom: 0.2rem;
+    border-radius: 20px;
+    backdrop-filter: brightness(140%);
+    &__item {
+      width: 100%;
+
+      border-bottom: 1px dashed ${lightTextColors.text4};
+      &__button {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &:first-child {
+        & > div {
+          border-radius: 20px 20px 0 0;
+        }
+      }
+      &:last-child {
+        border-bottom: none;
+        & > div {
+          border-radius: 0 0 20px 20px;
+        }
+        &:only-child {
+          border-bottom: none;
+          & > div {
+            border-radius: 20px;
+          }
+        }
+        &__country-region {
+          display: block;
+          width: 80%;
+
+          color: ${lightTextColors.text4};
+          font-weight: 300;
+        }
+      }
+      &__item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      &__item:first-child {
+        padding-top: 0;
+      }
+      &__country-region {
+        display: block;
+        width: 80%;
+
+        color: ${lightTextColors.text4};
+        font-weight: 300;
+      }
     }
   }
-
-  .saved-locations-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  .results__loading {
+    margin: 2rem auto;
+    color: ${colors.primary};
+  }
+  .results__empty {
+    text-align: center;
+    &__text {
+      font-weight: 700;
+    }
+    &__info {
+      color: ${lightTextColors.text3};
+    }
   }
 `;

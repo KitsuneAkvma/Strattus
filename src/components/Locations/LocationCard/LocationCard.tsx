@@ -44,7 +44,7 @@ export const LocationCard = (props: IWeatherData) => {
         </Box>
       ) : (
         <Box className="location__weather">
-          <Typography variant="h4">
+          <Typography variant="h5">
             <img
               src={current.condition.icon}
               alt="weather icon"

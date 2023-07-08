@@ -6,7 +6,6 @@ import { StyledLocationsPage } from './LocationsPage.styled';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import { useDispatch } from 'react-redux';
 import { LocationCard } from '../../components/Locations/LocationCard/LocationCard';
 import { colors, lightTextColors } from '../../utility/Themes/variables';
 import { updateIsEditModeOn } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
@@ -14,16 +13,31 @@ import { useSelector } from 'react-redux';
 import {
   selectGlobalIsEditModeOpen,
   selectSessionFavoriteLocation,
-  selectSessionSavedLocations,
+  selectSessionSavedLocationsUrls,
+  selectWeatherSavedLocations,
 } from '../../Redux/selectors';
+import { useEffect, useCallback } from 'react';
+import { useAppDispatch } from '../../utility/hooks/hooks';
+import { updateSavedLocations } from '../../Redux/Slices/WeatherSlice/operations';
+import { IWeatherData } from '../../Redux/Slices/WeatherSlice/types';
 
 export const LocationsPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigation = useNavigate();
   const favoriteLocation = useSelector(selectSessionFavoriteLocation);
-  const savedLocations = useSelector(selectSessionSavedLocations);
-  const isSavedLocationsExists = savedLocations.length > 0;
+  const savedLocations = useSelector(selectWeatherSavedLocations);
   const isEditModeOpen = useSelector(selectGlobalIsEditModeOpen);
+  const isSavedLocationsExists = savedLocations?.length > 0;
+  const savedLocationsUrls = useSelector(selectSessionSavedLocationsUrls);
+  const fetchSavedLocations = useCallback(
+    (savedLocations: string[]) => {
+      dispatch(updateSavedLocations(savedLocations));
+    },
+    [dispatch]
+  );
+  useEffect(() => {
+    fetchSavedLocations(savedLocationsUrls);
+  }, [dispatch, fetchSavedLocations, savedLocationsUrls]);
 
   const handleOpenEditMode = () => {
     dispatch(updateIsEditModeOn(true));
@@ -62,7 +76,7 @@ export const LocationsPage = () => {
         <Box className="locations-list__item">
           <Typography
             variant="body2"
-            sx={{ color: colors.primaryLight2 }}
+            sx={{ color: colors.primaryLight }}
             className="locations-list__item__title"
           >
             Favorite Location{' '}
@@ -72,23 +86,26 @@ export const LocationsPage = () => {
         <Box className="locations-list__item">
           <Typography
             variant="body2"
-            sx={{ color: colors.primaryLight2 }}
+            sx={{ color: colors.primaryLight }}
             className="locations-list__item__title"
           >
             Saved Locations{' '}
           </Typography>{' '}
           <ul className="saved-locations-list">
             {isSavedLocationsExists ? (
-              savedLocations.map(location => {
+              savedLocations.map((location: IWeatherData, index: number) => {
                 return (
-                  <li className="saved-locations-list__item">
+                  <li className="saved-locations-list__item" key={index}>
                     {' '}
                     <LocationCard {...location} />
                   </li>
                 );
               })
             ) : (
-              <Typography variant="caption" className="saved-locations-list">
+              <Typography
+                variant="caption"
+                className="saved-locations-list--empty"
+              >
                 No saved locations
               </Typography>
             )}

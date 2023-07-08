@@ -3,7 +3,7 @@ import { colors, lightTextColors } from '../../utility/Themes/variables';
 
 export const StyledLocationsPage = styled.section`
   position: relative;
-  width: 80vw;
+  width: 100vw;
   padding-top: 2rem;
   margin: 0 auto;
   display: flex;
@@ -47,6 +47,7 @@ export const StyledLocationsPage = styled.section`
     gap: 2rem;
 
     &__item__title {
+      padding-left: 5vw;
       margin-bottom: 0.2rem;
     }
   }
@@ -57,5 +58,9 @@ export const StyledLocationsPage = styled.section`
     gap: 0.75rem;
 
     color: ${lightTextColors.text3};
+    &--empty {
+      padding-top: 1rem;
+      align-self: center;
+    }
   }
 `;

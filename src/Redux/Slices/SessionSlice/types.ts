@@ -46,4 +46,5 @@ export interface ISearchResult {
   region: string;
   url: string;
 }
-export type TSavedLocations = IWeatherData[];
+export type TSavedLocationsUrls = string[] | [];
+export type TSavedLocations = IWeatherData[] | [];
