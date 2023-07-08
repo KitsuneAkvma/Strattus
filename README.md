@@ -10,9 +10,9 @@ Strattus is a weather web application designed to provide users with comprehensi
 - **Temperature and Speed Units**: Users can customize their preferences for temperature units (Celsius and Fahrenheit) and speed units (km/h and mph).
 - **Forecast**: Access the hourly forecast for the current day and a 3-day forecast ahead to plan your activities accordingly.
 - **Air Quality**: Stay informed about the air quality index, pollution levels, and driving/jogging conditions for a healthier outdoor experience.
-- **Location Search**: Search for specific locations and save them for easy access. The saved locations can be managed (added, edited, or deleted) in the dedicated menu.
+- **Location Search**: Search for specific locations and save them for easy access. The saved locations can be managed (added, edited, or deleted) in the dedicated menu. (WIP)
 - **Favorites**: Mark a location as a favorite, and it will be displayed in the drawer on the left side of the screen for quick reference.
-- **Dashboard**: View detailed information for saved locations, including current weather, temperature variations, and additional data. (Work in Progress)
+- **Dashboard**: View detailed information for saved locations, including current weather, temperature variations, and additional data. 
 - **Appearance**: The app's appearance adapts to the time of day, providing a visually pleasing experience.
 - **Mobile and Desktop Support**: In the future, the app will be developed using React Native for mobile devices and Electron for desktop applications.
 
