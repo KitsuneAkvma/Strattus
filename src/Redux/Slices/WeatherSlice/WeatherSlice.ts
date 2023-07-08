@@ -56,7 +56,7 @@ const WeatherSlice: Slice = createSlice({
         (state: IInitialState, action: PayloadAction<IWeatherData>) => {
           state.isLoading = false;
           state.currentWeather = action.payload;
-          state.forecast = action.payload.forecast?.forecastday;
+          state.forecast = action.payload?.forecast?.forecastday;
           state.alerts = action.payload?.alerts;
         }
       )

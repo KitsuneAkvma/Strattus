@@ -22,20 +22,14 @@ export interface ISessionSettings {
   theme: 'default' | 'light' | 'dark';
 }
 export interface IGeoLocationData {
-  query: string;
-  status: string;
-  country: string;
-  countryCode: string;
-  region: string;
-  regionName: string;
+  ip: string;
   city: string;
-  zip: string;
-  lat: number;
-  lon: number;
-  timezone: string;
-  isp: string;
+  region: string;
+  country: string;
+  loc: string;
   org: string;
-  as: string;
+  postal: string;
+  timezone: string;
 }
 export interface ISearchResult {
   country: string;

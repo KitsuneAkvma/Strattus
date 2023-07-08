@@ -16,7 +16,7 @@ export const DashboardHero = () => {
   const dispatch = useDispatch();
   const weather: IWeatherData = useSelector(selectWeatherCurrentWeather);
   const { current, location } = weather;
-  const city = location.name;
+  const city = location.name || 'London';
 
   const handleDrawerOpen = () => dispatch(updateIsSideBarOpen(true));
   return (

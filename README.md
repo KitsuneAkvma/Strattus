@@ -2,7 +2,7 @@
 
 <img src="public/svg/logo.svg" alt="app-icon" width="100" height="100">
 
-Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also incorporates the [ip-api](https://ip-api.com) to handle geolocation and fetch weather data based on the user's location. It's *highly* inspired by samsung's weather app.
+Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also incorporates the [ipinfo.io](https://ipinfo.io) to handle geolocation and fetch weather data based on the user's location. It's _highly_ inspired by samsung's weather app.
 
 ## Key Features
 
@@ -46,3 +46,15 @@ We believe in the power of open source and welcome contributions from the commun
 If you would like to contribute to Strattus, please refer to the CONTRIBUTING.md file for guidelines and instructions.
 
 Thank you for your interest in Strattus. If you have any questions or would like to explore more about the project, please feel free to reach out.
+
+## Privacy Policy
+
+Your privacy is important to us. When you visit our Strattus web app, we want you to feel secure and confident that your personal information is protected. Here's what you need to know:
+
+- We do not collect or store any personal data or personally identifiable information (PII) about you.
+- Any data you enter or interact with within the Strattus web app stays within your own browser and is not transmitted to external servers.
+- We do not track or monitor your activities outside or inside Strattus web app.
+- We do not share your data with any third parties.
+- We do not use cookies or similar tracking technologies.
+
+If you have any questions or concerns about our privacy practices, please feel free to reach out. We value your privacy and strive to ensure a secure browsing experience.
