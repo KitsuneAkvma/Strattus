@@ -6,11 +6,16 @@ import { ExtraInfo } from '../../components/Dashboard/ExtraInfo/ExtraInfo';
 import { Box, SwipeableDrawer } from '@mui/material';
 import { DrawerContent } from '../../components/_general/DrawerContent/DrawerContent';
 import { useSelector } from 'react-redux';
-import { selectGlobalIsSideBarOpen } from '../../Redux/selectors';
+import {
+  selectGlobalIsSideBarOpen,
+  selectSessionIsLoading,
+  selectWeatherIsLoading,
+} from '../../Redux/selectors';
 import { updateIsSideBarOpen } from '../../Redux/Slices/GlobalSlice/GlobalSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { lightTextColors } from '../../utility/Themes/variables';
+import { Loader } from '../../components/_general/Loader/Loader';
 const drawerWidth =
   window.innerWidth >= 1024
     ? '30vw'
@@ -32,6 +37,7 @@ const drawerCustomStyles = {
 
 export const DashboardPage = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     return handleDrawerClose;
     // eslint-disable-next-line react-hooks/exhaustive-deps

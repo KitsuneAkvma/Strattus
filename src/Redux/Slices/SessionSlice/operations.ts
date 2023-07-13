@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useGetGeoLocation } from '../../../utility/hooks/useGetGeoLocation';
 import { useSearchLocations } from '../../../utility/hooks/useGetWeather';
-import { ISearchResult } from './types';
+
 
 const updateGeoLocation = createAsyncThunk(
   'session/updateGeoLocation',

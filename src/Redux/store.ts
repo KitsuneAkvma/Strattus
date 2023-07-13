@@ -15,7 +15,7 @@ import persistStore from 'redux-persist/es/persistStore';
 import { WeatherReducer } from './Slices/WeatherSlice/WeatherSlice';
 import { GlobalReducer } from './Slices/GlobalSlice/GlobalSlice';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   session: SessionReducer,
   weather: WeatherReducer,
   global: GlobalReducer,

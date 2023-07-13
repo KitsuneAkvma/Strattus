@@ -15,7 +15,7 @@ import {
   selectSessionGeoLocation,
   selectSessionSavedLocationsUrls,
   selectWeatherCurrentWeather,
-  selectWeatherSelectedLocation,
+  selectWeatherSelectedLocation
 } from './Redux/selectors';
 import { Loader } from './components/_general/Loader/Loader';
 import { useAppDispatch } from './utility/hooks/hooks';
@@ -23,6 +23,7 @@ import { LazyRouter } from './utility/lazyComponents';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
+
   const isFirstVisit = useSelector(selectSessionFirstVisit);
   const geoLocation = useSelector(selectSessionGeoLocation);
   const city = geoLocation?.city;

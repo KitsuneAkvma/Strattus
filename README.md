@@ -47,6 +47,8 @@ If you would like to contribute to Strattus, please refer to the CONTRIBUTING.md
 
 Thank you for your interest in Strattus. If you have any questions or would like to explore more about the project, please feel free to reach out.
 
+(remember to add `./.env` file !)
+
 ## Privacy Policy
 
 Your privacy is important to us. When you visit our Strattus web app, we want you to feel secure and confident that your personal information is protected. Here's what you need to know:
