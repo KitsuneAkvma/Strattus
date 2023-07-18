@@ -31,6 +31,9 @@ export interface IGeoLocationData {
   postal: string;
   timezone: string;
 }
+
+
+
 export interface ISearchResult {
   country: string;
   id: number;

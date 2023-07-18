@@ -5,8 +5,12 @@ import { selectSessionSettings } from '../../Redux/selectors';
 
 type TTempType = 'current' | 'feelsLike' | 'min' | 'max' | 'avg';
 export const useTempUnits = (type: TTempType, weather: IWeatherData) => {
-  const { current, forecast } = weather;
   const userSettings: ISessionSettings = useSelector(selectSessionSettings);
+  if (!weather) {
+    return '...';
+  }
+  const { current, forecast } = weather;
+
   if (!forecast || !current) return '--';
   switch (type) {
     case 'current':
