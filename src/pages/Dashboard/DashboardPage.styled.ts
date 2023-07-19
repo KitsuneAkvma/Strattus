@@ -40,8 +40,8 @@ export const StyledDashboard = styled.div`
     height: 100vh;
     overflow: hidden;
     .secondary-info {
+      position: relative;
       border: none;
-      position: static;
       height: 100vh;
 
       &__content {
@@ -51,8 +51,11 @@ export const StyledDashboard = styled.div`
       &::before {
         content: '';
         position: absolute;
+        left: 0;
+        bottom: 10%;
         z-index: -1;
-        transform: rotate(9deg) translate(-19vw, 8vh);
+        transform-origin: center;
+        transform: rotate(7deg) translate(-50%, 25%);
         height: 106vh;
         width: 20vw;
         background-color: ${colors.bgDark};
