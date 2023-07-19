@@ -1,5 +1,4 @@
 import {
-  IGeoLocationData,
   ISearchResult,
   ISessionSettings,
   TSavedLocations,
@@ -15,9 +14,10 @@ import { TRootState } from './store';
 
 const selectSessionIsLoading = (state: TRootState): boolean =>
   state.session.isLoading;
+const selectSessionError = (state: TRootState) => state.session.error;
 const selectSessionFirstVisit = (state: TRootState): boolean =>
   state.session.firstVisit;
-const selectSessionGeoLocation = (state: TRootState): IGeoLocationData =>
+const selectSessionGeoLocation = (state: TRootState): string =>
   state.session.geoLocation;
 const selectSessionSettings = (state: TRootState): ISessionSettings =>
   state.session.sessionSettings;
@@ -33,6 +33,7 @@ const selectSessionSearchResults = (state: TRootState): ISearchResult[] =>
 
 const selectWeatherIsLoading = (state: TRootState): boolean =>
   state.weather.isLoading;
+const selectWeatherError = (state: TRootState) => state.weather.error;
 const selectWeatherCurrentWeather = (state: TRootState): IWeatherData =>
   state.weather.currentWeather;
 const selectWeatherForecast = (state: TRootState): IWeatherForecast =>
@@ -53,6 +54,7 @@ const selectGlobalIsEditModeOpen = (state: TRootState): boolean =>
 
 export {
   selectSessionIsLoading,
+  selectSessionError,
   selectSessionFavoriteLocation,
   selectSessionFirstVisit,
   selectSessionGeoLocation,
@@ -61,6 +63,7 @@ export {
   selectSessionSearchResults,
   selectSessionSettings,
   selectWeatherIsLoading,
+  selectWeatherError,
   selectWeatherAirQuality,
   selectWeatherAlerts,
   selectWeatherCurrentWeather,

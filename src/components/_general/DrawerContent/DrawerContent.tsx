@@ -35,7 +35,7 @@ export const DrawerContent = () => {
     selectWeatherSavedLocations
   );
   const doesSavedLocationExist: boolean = savedLocations?.length > 0;
-  const { location: favLocation } = favoriteLocation;
+  const favLocation = favoriteLocation?.location || undefined;
   const favTemp = useTempUnits('current', favoriteLocation);
 
   const handleFavoriteClick = () => {
@@ -64,7 +64,7 @@ export const DrawerContent = () => {
               <InfoOutlinedIcon className="localizations__item__section-name__info" />
             </Tooltip>
           </span>{' '}
-          {favoriteLocation && (
+          {favLocation ? (
             <Box>
               {' '}
               <ListItemButton
@@ -96,6 +96,10 @@ export const DrawerContent = () => {
                 </Box>{' '}
               </ListItemButton>
             </Box>
+          ) : (
+            <Typography variant="body2" className="saved-localizations--empty">
+              No favorite location set yet.
+            </Typography>
           )}
         </li>
         <div className="separator" />
