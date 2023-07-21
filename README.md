@@ -2,7 +2,8 @@
 
 <img src="public/svg/logo.svg" alt="app-icon" width="100" height="100">
 
-Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also uses the `navigator` object to handle geolocation and fetch weather data based on the user's location. It's _highly_ inspired by samsung's weather app.
+Strattus is a weather web application designed to provide users with comprehensive weather information. The application utilizes the [Weather API](https://www.weatherapi.com) to retrieve weather data, including current weather conditions, location details, forecast, air quality, and alerts. It also uses the `navigator` object to handle geolocation and fetch weather data based on the user's location. User needs to accept it of course that's why it is hosted on Netlify, because I dont have SSL certificate for thissubdomain 😅.
+It's _highly_ inspired by samsung's weather app.
 
 ## Key Features
 
